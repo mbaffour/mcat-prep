@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MCAT Forge Question",
+  "type": "object",
+  "required": [
+    "id",
+    "section",
+    "topic",
+    "subtopic",
+    "difficulty",
+    "question_type",
+    "passage",
+    "stem",
+    "choices",
+    "correct_answer",
+    "explanation",
+    "tags",
+    "estimated_time_seconds",
+    "source",
+    "review"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "section": {
+      "type": "string",
+      "enum": [
+        "Chemical and Physical Foundations of Biological Systems",
+        "Critical Analysis and Reasoning Skills",
+        "Biological and Biochemical Foundations of Living Systems",
+        "Psychological, Social, and Biological Foundations of Behavior"
+      ]
+    },
+    "topic": { "type": "string" },
+    "subtopic": { "type": "string" },
+    "difficulty": { "type": "string", "enum": ["easy", "medium", "hard"] },
+    "question_type": {
+      "type": "string",
+      "enum": ["discrete", "passage", "cars", "data_interpretation", "experimental_design", "calculation", "graph_table"]
+    },
+    "passage": {
+      "type": "object",
+      "required": ["title", "text", "figures", "tables"],
+      "properties": {
+        "title": { "type": "string" },
+        "text": { "type": "string" },
+        "figures": { "type": "array" },
+        "tables": { "type": "array" }
+      }
+    },
+    "stem": { "type": "string", "minLength": 1 },
+    "choices": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["id", "text"],
+        "properties": {
+          "id": { "type": "string", "enum": ["A", "B", "C", "D"] },
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "correct_answer": { "type": "string", "enum": ["A", "B", "C", "D"] },
+    "explanation": {
+      "type": "object",
+      "required": ["short", "detailed", "why_correct", "wrong_answer_explanations", "high_yield_takeaway"],
+      "properties": {
+        "short": { "type": "string" },
+        "detailed": { "type": "string" },
+        "why_correct": { "type": "string" },
+        "wrong_answer_explanations": {
+          "type": "object",
+          "required": ["A", "B", "C", "D"]
+        },
+        "high_yield_takeaway": { "type": "string" },
+        "common_trap": { "type": "string" },
+        "how_to_think": { "type": "string" },
+        "related_concepts": { "type": "array", "items": { "type": "string" } },
+        "formulas": { "type": "array", "items": { "type": "string" } },
+        "step_by_step_solution": { "type": "string" }
+      }
+    },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "estimated_time_seconds": { "type": "number", "minimum": 15 },
+    "source": {
+      "type": "object",
+      "required": ["source_type", "license", "attribution"],
+      "properties": {
+        "source_type": {
+          "type": "string",
+          "enum": ["original", "user_created", "open_license", "public_domain", "concept_generated"]
+        },
+        "source_url": { "type": "string" },
+        "license": { "type": "string" },
+        "attribution": { "type": "string" },
+        "source_notes": { "type": "string" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": ["status", "created_at", "updated_at"],
+      "properties": {
+        "status": { "type": "string", "enum": ["draft", "needs_review", "approved", "rejected"] },
+        "reviewer_notes": { "type": "string" },
+        "created_at": { "type": "string" },
+        "updated_at": { "type": "string" }
+      }
+    },
+    "similarity": {
+      "type": "object",
+      "properties": {
+        "max_overlap_ratio": { "type": "number" },
+        "shared_phrases": { "type": "array", "items": { "type": "string" } },
+        "level": { "type": "string", "enum": ["low", "review", "blocked"] }
+      }
+    }
+  }
+}

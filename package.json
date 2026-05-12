@@ -1,0 +1,12 @@
+{
+  "name": "mcat-forge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:bank": "node scripts/generateQuestionBank.mjs 100000",
+    "shard:bank": "node scripts/shardQuestionBank.mjs 2500",
+    "test": "node tests/content-pipeline.test.mjs",
+    "serve": "python3 -m http.server 8000"
+  }
+}
