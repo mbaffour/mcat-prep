@@ -24,7 +24,7 @@ let quizTimerId = null;
 render(`
   <section class="loading-shell">
     <div class="brand-mark" aria-hidden="true">M</div>
-    <h1>Loading MCAT Forge</h1>
+    <h1>Loading Project 528</h1>
     <p>Preparing the question bank and local progress.</p>
     <div class="progress indeterminate"><span></span></div>
   </section>
@@ -114,7 +114,7 @@ backupButton.addEventListener("click", () => {
     <label class="field">Import backup JSON<textarea id="backupText" class="json-box" placeholder="Paste backup JSON"></textarea></label>
     <button id="importBackup" type="button">Import backup</button>
   `);
-  document.querySelector("#exportBackup").addEventListener("click", () => download("mcat-forge-backup.json", store.exportBackup()));
+  document.querySelector("#exportBackup").addEventListener("click", () => download("project-528-backup.json", store.exportBackup()));
   document.querySelector("#importBackup").addEventListener("click", () => {
     try {
       state = store.importBackup(document.querySelector("#backupText").value);
@@ -178,7 +178,7 @@ function routeDashboard() {
   }).join("") || `<tr><td colspan="3">No attempts yet. Start with Learning mode.</td></tr>`;
 
   render(`
-    ${header("Dashboard", "MCAT command center", "A GitHub Pages-ready study workspace with legal ingestion, draft review, analytics, and persistent progress.")}
+    ${header("Dashboard", "Project 528 command center", "A GitHub Pages-ready study workspace with legal ingestion, draft review, analytics, and persistent progress.")}
     <section class="hero-panel">
       <div>
         <p class="page-kicker">Question Bank</p>

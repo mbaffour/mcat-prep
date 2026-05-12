@@ -84,7 +84,7 @@ function makeQuestion(seed, index) {
       source_type: "original",
       source_url: "",
       license: "Original demo content generated for this local app",
-      attribution: "MCAT Forge demo bank",
+      attribution: "Project 528 demo bank",
       source_notes: "Original teaching question; not copied or paraphrased from a third-party question bank."
     },
     review: {

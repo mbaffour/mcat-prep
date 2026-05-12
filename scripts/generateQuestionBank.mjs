@@ -208,8 +208,8 @@ function baseQuestion({ id, section, topic, subtopic, difficulty, question_type,
     source: {
       source_type: "original",
       source_url: "",
-      license: "Original generated content for MCAT Forge",
-      attribution: "MCAT Forge original concept generator",
+      license: "Original generated content for Project 528",
+      attribution: "Project 528 original concept generator",
       source_notes: "Generated from internal high-yield concept templates; not copied or paraphrased from third-party MCAT question banks."
     },
     review: {

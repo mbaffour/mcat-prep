@@ -1,4 +1,4 @@
-const STORAGE_KEY = "mcat-forge-v1";
+const STORAGE_KEY = "project-528-v1";
 
 const defaultState = {
   questions: [],
@@ -49,7 +49,7 @@ export const store = {
   exportBackup() {
     const payload = {
       exported_at: new Date().toISOString(),
-      app: "MCAT Forge",
+      app: "Project 528",
       version: 1,
       data: this.load()
     };

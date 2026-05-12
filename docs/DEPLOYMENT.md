@@ -1,6 +1,6 @@
 # Deployment
 
-MCAT Forge is a static app and can be deployed on GitHub Pages.
+Project 528 is a static app and can be deployed on GitHub Pages.
 
 ## GitHub Pages
 

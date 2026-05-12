@@ -1,6 +1,6 @@
 # Legal Content Guide
 
-MCAT Forge supports legal concept ingestion, not copying question banks.
+Project 528 supports legal concept ingestion, not copying question banks.
 
 ## Allowed
 

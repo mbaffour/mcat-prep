@@ -1,6 +1,6 @@
-# MCAT Forge
+# Project 528
 
-MCAT Forge is a static-first MCAT prep app built with HTML, CSS, and vanilla JavaScript. It runs locally in the browser and is ready for GitHub Pages hosting.
+Project 528 is a static-first MCAT prep app built with HTML, CSS, and vanilla JavaScript. It runs locally in the browser and is ready for GitHub Pages hosting.
 
 ## Features
 
