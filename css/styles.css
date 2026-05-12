@@ -605,6 +605,33 @@ button:disabled {
   font-weight: 800;
 }
 
+.feedback-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--rose) 14%, transparent), transparent 48%),
+    linear-gradient(225deg, color-mix(in srgb, var(--primary) 12%, transparent), transparent 50%),
+    var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.feedback-hero h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3.8vw, 2.5rem);
+}
+
+.feedback-hero p {
+  max-width: 760px;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -1179,7 +1206,8 @@ th {
   .hero-panel { align-items: flex-start; flex-direction: column; }
   .sim-hero,
   .result-hero,
-  .fun-hero { align-items: flex-start; flex-direction: column; }
+  .fun-hero,
+  .feedback-hero { align-items: flex-start; flex-direction: column; }
   .hero-actions { justify-content: flex-start; }
   .exam-layout { grid-template-columns: 1fr; }
   .exam-sidebar { position: static; }

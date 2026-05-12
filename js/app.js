@@ -209,6 +209,7 @@ function routeDashboard() {
           ${modeCard("#/review", "Mistakes", "Retry misses", "Compare attempts and mark mastered.")}
           ${modeCard("#/spaced", "Spaced Rep", "Due queue", "Review by confidence and history.")}
           ${modeCard("#/fun", "Fun Science", "Mnemonics", "Bright concept cards, jokes, tips, and tricks.")}
+          ${modeCard("#/feedback", "Feedback", "Report issues", "Tell the maker what is broken or brilliant.")}
         </div>
       </article>
       <article class="card">
@@ -827,6 +828,88 @@ function routeFunScience() {
   document.querySelector("#newJoke").addEventListener("click", routeFunScience);
 }
 
+function routeFeedback() {
+  render(`
+    ${header("Feedback", "Tell the maker something", "Report bugs, flag content issues, request features, or send a note about what would make Project 528 better.")}
+    <section class="feedback-hero">
+      <div>
+        <p class="page-kicker">Student Signal</p>
+        <h2>Make the simulator sharper</h2>
+        <p>This static app cannot submit to a server directly, so feedback opens as a prefilled GitHub Issue. You can also save it locally and export your feedback log.</p>
+      </div>
+      <a class="button" href="https://github.com/mbaffour/mcat-prep/issues" target="_blank" rel="noreferrer">View GitHub Issues</a>
+    </section>
+    <section class="grid two">
+      <article class="card">
+        <h2>Feedback Form</h2>
+        <div class="toolbar">
+          <label class="field"><span>Type</span><select id="feedbackType"><option>Bug report</option><option>Content correction</option><option>Feature request</option><option>Question quality issue</option><option>Note to maker</option></select></label>
+          <label class="field"><span>Page</span><input id="feedbackPage" value="${esc(location.href)}"></label>
+        </div>
+        <label class="field">Title<input id="feedbackTitle" placeholder="Short summary"></label>
+        <label class="field">Details<textarea id="feedbackDetails" placeholder="What happened? What did you expect? Add question ID, section, browser, or steps if useful."></textarea></label>
+        <label class="field">Contact optional<input id="feedbackContact" placeholder="Email or GitHub username if you want follow-up"></label>
+        <div class="toolbar">
+          <button id="openIssue" type="button">Open GitHub Issue</button>
+          <button id="saveFeedback" class="ghost-button" type="button">Save locally</button>
+          <button id="exportFeedback" class="ghost-button" type="button">Export feedback log</button>
+        </div>
+      </article>
+      <aside class="card">
+        <h2>Helpful Reports Include</h2>
+        <div class="tip-list">
+          <div class="tip-item"><span>Bug</span><strong>Steps to reproduce</strong><p>Tell me what you clicked, what page you were on, and what went wrong.</p></div>
+          <div class="tip-item"><span>Content</span><strong>Question ID</strong><p>Include the question ID and why the answer, explanation, or topic mapping seems off.</p></div>
+          <div class="tip-item"><span>Feature</span><strong>Use case</strong><p>Describe what you are trying to study or track, not just the button you want.</p></div>
+          <div class="tip-item"><span>Vibe</span><strong>Student experience</strong><p>Tell me what feels motivating, confusing, too dry, too flashy, or missing.</p></div>
+        </div>
+        <p class="lede">${formatNumber(state.feedback.length)} feedback drafts saved locally.</p>
+      </aside>
+    </section>
+  `);
+  document.querySelector("#openIssue").addEventListener("click", openFeedbackIssue);
+  document.querySelector("#saveFeedback").addEventListener("click", () => {
+    const item = collectFeedback();
+    state.feedback.push(item);
+    save();
+    toast("Feedback saved locally.");
+    routeFeedback();
+  });
+  document.querySelector("#exportFeedback").addEventListener("click", () => download("project-528-feedback.json", JSON.stringify(state.feedback, null, 2)));
+}
+
+function collectFeedback() {
+  return {
+    type: document.querySelector("#feedbackType").value,
+    page: document.querySelector("#feedbackPage").value,
+    title: document.querySelector("#feedbackTitle").value.trim() || "Project 528 feedback",
+    details: document.querySelector("#feedbackDetails").value.trim(),
+    contact: document.querySelector("#feedbackContact").value.trim(),
+    created_at: new Date().toISOString()
+  };
+}
+
+function openFeedbackIssue() {
+  const item = collectFeedback();
+  if (!item.details) {
+    toast("Add a few details before opening an issue.");
+    return;
+  }
+  const body = [
+    `Type: ${item.type}`,
+    `Page: ${item.page}`,
+    `Contact: ${item.contact || "Not provided"}`,
+    "",
+    "Details:",
+    item.details
+  ].join("\n");
+  const params = new URLSearchParams({
+    title: `[${item.type}] ${item.title}`,
+    body
+  });
+  window.open(`https://github.com/mbaffour/mcat-prep/issues/new?${params.toString()}`, "_blank", "noopener,noreferrer");
+}
+
 function chartCard(title, rows) {
   const body = rows.length ? rows.map((row) => `<div class="bar-row"><strong>${esc(row.label)}</strong>${progressBar(row.accuracy)}<span>${row.accuracy}%</span></div>`).join("") : `<p>No data yet.</p>`;
   return `<article class="card"><h2>${esc(title)}</h2><div class="chart">${body}</div></article>`;
@@ -1081,6 +1164,7 @@ initRouter({
   "/bank": routeBank,
   "/analytics": routeAnalytics,
   "/fun": routeFunScience,
+  "/feedback": routeFeedback,
   "/editor": routeEditor,
   "/ingestion": routeIngestion,
   "/drafts": routeDrafts

@@ -5,6 +5,7 @@ const defaultState = {
   customQuestions: [],
   draftQuestions: [],
   sources: [],
+  feedback: [],
   attempts: [],
   weakTopics: [],
   flags: [],
