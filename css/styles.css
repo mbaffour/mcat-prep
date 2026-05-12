@@ -82,10 +82,11 @@ button,
   justify-content: center;
   gap: 0.45rem;
   font-weight: 700;
+  transition: background 130ms ease, transform 120ms ease, box-shadow 130ms ease;
 }
 
 button:hover,
-.button:hover { background: var(--primary-strong); }
+.button:hover { background: var(--primary-strong); transform: translateY(-1px); }
 
 button:disabled {
   opacity: 0.55;
@@ -1058,13 +1059,14 @@ textarea {
   background: var(--surface);
   color: var(--text);
   border: 1px solid var(--line);
+  transition: background 100ms ease, border-color 100ms ease, box-shadow 100ms ease, transform 100ms ease;
 }
 
-.choice:hover { background: var(--surface-2); }
+.choice:hover { background: var(--surface-2); transform: translateX(3px); }
 
-.choice.selected { border-color: var(--primary); box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 28%, transparent); }
-.choice.correct { border-color: var(--success); }
-.choice.incorrect { border-color: var(--danger); }
+.choice.selected { border-color: var(--primary); box-shadow: 0 0 0 2px color-mix(in srgb, var(--primary) 28%, transparent); transform: translateX(3px); }
+.choice.correct { border-color: var(--success); animation: correct-flash 700ms ease forwards; }
+.choice.incorrect { border-color: var(--danger); animation: incorrect-shake 400ms ease forwards; }
 
 .choice-id {
   width: 34px;
@@ -1116,7 +1118,8 @@ textarea {
   display: block;
   height: 100%;
   width: var(--value, 0%);
-  background: var(--primary);
+  background: linear-gradient(90deg, var(--primary), color-mix(in srgb, var(--sky) 60%, var(--primary)));
+  transition: width 400ms ease;
 }
 
 .progress.indeterminate {
@@ -1250,6 +1253,10 @@ th {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 0.8rem 1rem;
+  animation: toast-slide-in 250ms ease forwards;
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
 }
 
 .modal {
@@ -1289,6 +1296,7 @@ th {
   color: var(--danger);
   border-color: color-mix(in srgb, var(--danger) 60%, var(--line));
   background: color-mix(in srgb, var(--danger) 10%, var(--surface));
+  animation: timer-pulse 900ms ease infinite;
 }
 
 .hidden { display: none !important; }
@@ -1329,4 +1337,172 @@ th {
   .exam-progress .progress { width: 100%; }
   .section-tiles { grid-template-columns: 1fr; }
   .atom-graphic { width: 124px; }
+  .key-hints { display: none; }
+}
+
+/* ============================================
+   UI/UX Improvements
+   ============================================ */
+
+/* Page entrance animation */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.app-shell.page-enter {
+  animation: page-enter 220ms ease;
+}
+
+/* Button press effect */
+button:active,
+.button:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Choice answer animations */
+@keyframes correct-flash {
+  0% { box-shadow: 0 0 0 0 transparent; }
+  35% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--success) 40%, transparent); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+@keyframes incorrect-shake {
+  0%, 100% { transform: translateX(3px); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(7px); }
+  60% { transform: translateX(-1px); }
+  80% { transform: translateX(5px); }
+}
+
+/* Toast slide-in */
+@keyframes toast-slide-in {
+  from { opacity: 0; transform: translateX(110%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.toast-icon {
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+/* Timer urgency pulse */
+@keyframes timer-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Confetti pieces */
+@keyframes confetti-fall {
+  to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+.confetti-piece {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  top: -16px;
+}
+
+/* Score ring entrance */
+@keyframes score-pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  65% { transform: scale(1.06); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.score-ring.large {
+  animation: score-pop 550ms ease forwards;
+}
+
+/* Keyboard hint badges */
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 4px;
+  border: 1px solid var(--line);
+  border-bottom: 2px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 800;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  vertical-align: middle;
+}
+
+.key-hints {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  align-items: center;
+  margin-left: auto;
+}
+
+/* Streak badge */
+.streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold), var(--accent));
+  color: #fff;
+  font-weight: 900;
+  font-size: 0.88rem;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--gold) 40%, transparent);
+}
+
+/* Mode card top-accent hover bar */
+.mode-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.mode-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--sky));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.mode-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Concept card icon bounce */
+.concept-icon {
+  transition: transform 200ms ease;
+}
+
+.concept-card:hover .concept-icon {
+  transform: scale(1.15);
+}
+
+/* Nav active page underline indicator */
+.topnav a[aria-current="page"] {
+  position: relative;
+}
+
+.topnav a[aria-current="page"]::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0.72rem;
+  right: 0.72rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--primary);
 }

@@ -21,6 +21,13 @@ let state = store.load();
 let activeSession = null;
 let activeQuestionSet = [];
 let quizTimerId = null;
+let activeKeyHandler = null;
+
+function setKeyHandler(handler) {
+  if (activeKeyHandler) document.removeEventListener("keydown", activeKeyHandler);
+  activeKeyHandler = handler;
+  if (handler) document.addEventListener("keydown", handler);
+}
 
 render(`
   <section class="loading-shell">
@@ -44,7 +51,11 @@ function questions() {
 
 function render(html) {
   clearQuizTimer();
+  setKeyHandler(null);
   app.innerHTML = html;
+  app.classList.remove("page-enter");
+  void app.offsetWidth;
+  app.classList.add("page-enter");
   app.focus({ preventScroll: true });
 }
 
@@ -69,9 +80,11 @@ function esc(value = "") {
 }
 
 function toast(message) {
+  const lower = message.toLowerCase();
+  const icon = lower.includes("error") || lower.includes("invalid") || lower.includes("paste") || lower.includes("add a few") || lower.includes("least") ? "⚠" : lower.includes("reset") || lower.includes("reloading") || lower.includes("expired") ? "⏱" : "✓";
   const item = document.createElement("div");
   item.className = "toast";
-  item.textContent = message;
+  item.innerHTML = `<span class="toast-icon">${icon}</span><span>${esc(message)}</span>`;
   toastRegion.append(item);
   setTimeout(() => item.remove(), 4200);
 }
@@ -483,6 +496,7 @@ function renderQuiz(showReview = false) {
           <button id="prevQuestion" class="ghost-button" type="button" ${activeSession.index === 0 ? "disabled" : ""}>Previous</button>
           <button id="nextQuestion" type="button">${activeSession.index === activeSession.questions.length - 1 ? "Finish" : "Next"}</button>
           <button id="submitSession" class="ghost-button" type="button">Submit</button>
+          <span class="key-hints"><kbd class="kbd">A</kbd>–<kbd class="kbd">D</kbd> select · <kbd class="kbd">←</kbd> <kbd class="kbd">→</kbd> navigate · <kbd class="kbd">F</kbd> flag</span>
         </div>
       </article>
       <aside class="card exam-sidebar">
@@ -557,6 +571,33 @@ function renderQuiz(showReview = false) {
       renderQuiz(showReview);
     });
   });
+
+  setKeyHandler((e) => {
+    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT") return;
+    const key = e.key.toLowerCase();
+    const choiceMap = { a: 0, b: 1, c: 2, d: 3, 1: 0, 2: 1, 3: 2, 4: 3 };
+    if (!answer && key in choiceMap) {
+      const choice = question.choices[choiceMap[key]];
+      if (choice) {
+        recordAnswer(state, activeSession, question, choice.id, document.querySelector("#confidence")?.value || "3");
+        save();
+        renderQuiz(activeSession.showExplanations === "end" ? false : showReview);
+      }
+    } else if (e.key === "ArrowLeft") {
+      if (activeSession.index > 0) { activeSession.index -= 1; renderQuiz(showReview); }
+    } else if (e.key === "ArrowRight" || (e.key === "Enter" && answer)) {
+      e.preventDefault();
+      if (activeSession.index === activeSession.questions.length - 1) renderSessionResult();
+      else { activeSession.index += 1; renderQuiz(showReview); }
+    } else if (key === "f" && !e.ctrlKey && !e.metaKey) {
+      activeSession.flagged = activeSession.flagged.includes(question.id)
+        ? activeSession.flagged.filter((id) => id !== question.id)
+        : [...activeSession.flagged, question.id];
+      state.flags = [...new Set([...state.flags, question.id])];
+      save();
+      renderQuiz(showReview);
+    }
+  });
 }
 
 function startLiveTimer() {
@@ -610,9 +651,22 @@ function formatTime(seconds) {
   return `${minutes}:${rest}`;
 }
 
+function launchConfetti() {
+  const colors = ["#0f8f7d", "#49a7ff", "#ef5d83", "#f4bc32", "#8a6df1", "#f08a3c"];
+  for (let i = 0; i < 90; i++) {
+    const el = document.createElement("div");
+    el.className = "confetti-piece";
+    const size = 5 + Math.random() * 8;
+    el.style.cssText = `left:${Math.random() * 100}vw;width:${size}px;height:${size}px;background:${colors[i % colors.length]};border-radius:${Math.random() > 0.5 ? "50%" : "2px"};animation:confetti-fall ${1.2 + Math.random() * 1.8}s ${Math.random() * 0.6}s ease-in forwards;transform:rotate(${Math.random() * 360}deg)`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3200);
+  }
+}
+
 function renderSessionResult() {
   clearQuizTimer();
   const score = scoreSession(activeSession);
+  const msg = score.accuracy >= 90 ? "Outstanding! You're mastering this material." : score.accuracy >= 80 ? "Great work! Consistent scores like this build confidence." : score.accuracy >= 70 ? "Solid performance! Keep targeting your weak spots." : score.accuracy >= 60 ? "Good effort. Review the explanations and retry the misses." : "Every miss is a lesson. Let's review together and close those gaps.";
   render(`
     ${header("Session Complete", `${score.accuracy}%`, `${score.correct} correct out of ${score.total}; ${score.unanswered} unanswered.`)}
     <section class="result-hero">
@@ -623,7 +677,7 @@ function renderSessionResult() {
       <div>
         <p class="page-kicker">Performance</p>
         <h2>${score.correct} correct · ${score.unanswered} unanswered</h2>
-        <p>Review every item with explanations, then send missed concepts into mistakes review and spaced repetition.</p>
+        <p>${esc(msg)}</p>
       </div>
     </section>
     <section class="card">
@@ -634,6 +688,7 @@ function renderSessionResult() {
       </div>
     </section>
   `);
+  if (score.accuracy >= 60) launchConfetti();
   document.querySelector("#reviewSession").addEventListener("click", () => {
     activeSession.index = 0;
     renderQuiz(true);
