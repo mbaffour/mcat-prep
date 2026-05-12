@@ -234,6 +234,39 @@ button:disabled {
   box-shadow: var(--shadow);
 }
 
+.daily-mission {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: clamp(1rem, 3vw, 1.45rem);
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, var(--line));
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 18% 20%, color-mix(in srgb, var(--gold) 24%, transparent), transparent 180px),
+    linear-gradient(135deg, color-mix(in srgb, var(--primary) 12%, transparent), color-mix(in srgb, var(--sky) 10%, transparent)),
+    var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.daily-mission h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+}
+
+.daily-mission p {
+  color: var(--muted);
+  margin: 0.45rem 0 0;
+}
+
+.mission-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
 .hero-panel h2 {
   margin: 0;
   font-size: clamp(1.6rem, 4vw, 2.6rem);
@@ -500,6 +533,13 @@ button:disabled {
   box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.concept-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--card-color, var(--primary)) 58%, var(--line));
+  box-shadow: 0 18px 44px rgba(24, 32, 47, 0.16);
 }
 
 .concept-card::after {
@@ -603,6 +643,59 @@ button:disabled {
   margin: 0.4rem 0 1rem;
   font-size: clamp(1.1rem, 2.2vw, 1.45rem);
   font-weight: 800;
+}
+
+.challenge-card {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--sky) 12%, transparent), transparent 58%),
+    var(--surface);
+}
+
+.challenge-card h2 {
+  font-size: clamp(1.2rem, 2.4vw, 1.75rem);
+  line-height: 1.2;
+}
+
+.badge-card {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.badge-orbit {
+  position: relative;
+  width: min(260px, 70vw);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.badge-orbit::before,
+.badge-orbit::after {
+  content: "";
+  position: absolute;
+  inset: 28px;
+  border: 2px solid color-mix(in srgb, var(--primary) 34%, transparent);
+  border-radius: 50%;
+}
+
+.badge-orbit::after {
+  transform: rotate(62deg);
+  border-color: color-mix(in srgb, var(--rose) 34%, transparent);
+}
+
+.badge-orbit strong {
+  z-index: 1;
+  width: 148px;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--violet));
+  color: #fff;
+  box-shadow: var(--shadow);
 }
 
 .feedback-hero {
@@ -1204,11 +1297,13 @@ th {
   .topbar { grid-template-columns: 1fr auto; }
   .topnav { grid-column: 1 / -1; }
   .hero-panel { align-items: flex-start; flex-direction: column; }
+  .daily-mission { align-items: flex-start; flex-direction: column; }
   .sim-hero,
   .result-hero,
   .fun-hero,
   .feedback-hero { align-items: flex-start; flex-direction: column; }
   .hero-actions { justify-content: flex-start; }
+  .mission-actions { justify-content: flex-start; }
   .exam-layout { grid-template-columns: 1fr; }
   .exam-sidebar { position: static; }
   .grid.metrics,

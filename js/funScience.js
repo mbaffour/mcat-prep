@@ -135,3 +135,51 @@ export const SCIENCE_JOKES = [
   "The MCAT loves controls because chaos is not a valid experimental design.",
   "A competitive inhibitor walked into an active site. The substrate said, 'I was literally here first.'"
 ];
+
+export const QUICK_CHALLENGES = [
+  {
+    prompt: "A graph shows unchanged Vmax and increased Km after inhibitor is added. Name the inhibitor type.",
+    answer: "Competitive inhibition",
+    why: "Competitive inhibitors can be overcome by high substrate, so Vmax stays the same while apparent Km rises."
+  },
+  {
+    prompt: "A CARS answer says 'always' but the author only says 'often.' What is the likely trap?",
+    answer: "Extreme wording",
+    why: "CARS rewards scope control. Stronger language than the passage supports is usually a trap."
+  },
+  {
+    prompt: "A researcher changes both drug dose and incubation temperature. What design issue appears?",
+    answer: "Confounding",
+    why: "Changing multiple variables prevents you from attributing the result to one cause."
+  },
+  {
+    prompt: "A patient hyperventilates. What happens first to blood CO2 and pH?",
+    answer: "CO2 decreases and pH increases",
+    why: "Blowing off CO2 reduces carbonic acid, producing respiratory alkalosis."
+  },
+  {
+    prompt: "A narrow vessel radius is halved. What happens to resistance by Poiseuille's law?",
+    answer: "It increases 16-fold",
+    why: "Resistance is inversely proportional to radius to the fourth power."
+  }
+];
+
+export const STUDY_RITUALS = [
+  "Do 10 questions before checking your phone.",
+  "Review every missed question until you can explain the trap in one sentence.",
+  "For one passage, write the paragraph function in the margin: claim, evidence, contrast, or conclusion.",
+  "Pick one formula and derive its units before starting a set.",
+  "Make one flashcard from a mistake, not from a thing you already know.",
+  "End today by naming one weak topic and one thing that improved."
+];
+
+export const CONCEPT_BADGES = [
+  "Buffer Boss",
+  "CARS Cartographer",
+  "Enzyme Whisperer",
+  "Circuit Surgeon",
+  "Data Detective",
+  "Amino Acid Archivist",
+  "Psych/Soc Pattern Spotter",
+  "Passage Pilot"
+];

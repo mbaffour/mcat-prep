@@ -2,7 +2,7 @@ import { initRouter } from "./router.js";
 import { store } from "./storage.js";
 import { MCAT_SECTIONS, TOPICS } from "./demoData.js";
 import { MCAT_BLUEPRINT, MCAT_TEST_DAY_FLOW, blueprintForSection, mcatContentMinutes, mcatQuestionTotal } from "./mcatBlueprint.js";
-import { MCAT_TIPS, MNEMONICS, SCIENCE_GRAPHICS, SCIENCE_JOKES } from "./funScience.js";
+import { CONCEPT_BADGES, MCAT_TIPS, MNEMONICS, QUICK_CHALLENGES, SCIENCE_GRAPHICS, SCIENCE_JOKES, STUDY_RITUALS } from "./funScience.js";
 import { summarizeAttempts, recentActivity } from "./analytics.js";
 import { allQuestions, filterQuestions, loadInitialQuestions, parseQuestionsFromText, publishDraft, questionBankMeta, questionsToCsv, upsertQuestion } from "./questionBank.js";
 import { createSession, recordAnswer, scoreSession } from "./quizEngine.js";
@@ -167,6 +167,8 @@ function routeDashboard() {
   const questionById = new Map(all.map((question) => [question.id, question]));
   const summary = summarizeAttempts(all, state.attempts);
   const meta = questionBankMeta();
+  const ritual = dailyItem(STUDY_RITUALS);
+  const badge = dailyItem(CONCEPT_BADGES, 3);
   const sectionRows = MCAT_SECTIONS.map((section) => {
     const total = all.filter((question) => question.section === section).length;
     const completed = state.attempts.filter((attempt) => questionById.get(attempt.questionId)?.section === section).length;
@@ -189,6 +191,17 @@ function routeDashboard() {
       <div class="hero-actions">
         <a class="button" href="#/test">Start timed set</a>
         <a class="button ghost-button" href="#/bank">Browse bank</a>
+      </div>
+    </section>
+    <section class="daily-mission">
+      <div>
+        <p class="page-kicker">Today’s Mission</p>
+        <h2>${esc(ritual)}</h2>
+        <p>Your study persona today: <strong>${esc(badge)}</strong></p>
+      </div>
+      <div class="mission-actions">
+        <a class="button" href="#/practice">10-question warmup</a>
+        <a class="button ghost-button" href="#/fun">Memory boost</a>
       </div>
     </section>
     <section class="grid metrics">
@@ -770,6 +783,8 @@ function routeAnalytics() {
 
 function routeFunScience() {
   const joke = SCIENCE_JOKES[Math.floor(Math.random() * SCIENCE_JOKES.length)];
+  const challenge = dailyItem(QUICK_CHALLENGES, 5);
+  const badge = dailyItem(CONCEPT_BADGES, 7);
   render(`
     ${header("Fun Science", "Project 528 memory lab", "Mnemonics, visual hooks, tips, and a little science humor for the long study road.")}
     <section class="fun-hero">
@@ -791,6 +806,22 @@ function routeFunScience() {
           <code>${esc(item.formula)}</code>
         </article>
       `).join("")}
+    </section>
+    <section class="grid two" style="margin-top:1rem">
+      <article class="card challenge-card">
+        <p class="page-kicker">60-Second Challenge</p>
+        <h2>${esc(challenge.prompt)}</h2>
+        <details>
+          <summary>Reveal answer</summary>
+          <p><strong>${esc(challenge.answer)}</strong></p>
+          <p>${esc(challenge.why)}</p>
+        </details>
+      </article>
+      <aside class="card badge-card">
+        <p class="page-kicker">Study Persona</p>
+        <div class="badge-orbit"><strong>${esc(badge)}</strong></div>
+        <p class="lede">Not an official score. Just the app gently telling you to keep going.</p>
+      </aside>
     </section>
     <section class="grid two" style="margin-top:1rem">
       <article class="card">
@@ -826,6 +857,12 @@ function routeFunScience() {
     </section>
   `);
   document.querySelector("#newJoke").addEventListener("click", routeFunScience);
+}
+
+function dailyItem(items, salt = 0) {
+  const day = new Date().toISOString().slice(0, 10);
+  const seed = [...day].reduce((sum, char) => sum + char.charCodeAt(0), salt);
+  return items[seed % items.length];
 }
 
 function routeFeedback() {
