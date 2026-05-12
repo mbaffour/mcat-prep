@@ -2,6 +2,7 @@ import { initRouter } from "./router.js";
 import { store } from "./storage.js";
 import { MCAT_SECTIONS, TOPICS } from "./demoData.js";
 import { MCAT_BLUEPRINT, MCAT_TEST_DAY_FLOW, blueprintForSection, mcatContentMinutes, mcatQuestionTotal } from "./mcatBlueprint.js";
+import { MCAT_TIPS, MNEMONICS, SCIENCE_GRAPHICS, SCIENCE_JOKES } from "./funScience.js";
 import { summarizeAttempts, recentActivity } from "./analytics.js";
 import { allQuestions, filterQuestions, loadInitialQuestions, parseQuestionsFromText, publishDraft, questionBankMeta, questionsToCsv, upsertQuestion } from "./questionBank.js";
 import { createSession, recordAnswer, scoreSession } from "./quizEngine.js";
@@ -207,6 +208,7 @@ function routeDashboard() {
           ${modeCard("#/simulation", "Full Length", "Section flow", "Configure section lengths and breaks.")}
           ${modeCard("#/review", "Mistakes", "Retry misses", "Compare attempts and mark mastered.")}
           ${modeCard("#/spaced", "Spaced Rep", "Due queue", "Review by confidence and history.")}
+          ${modeCard("#/fun", "Fun Science", "Mnemonics", "Bright concept cards, jokes, tips, and tricks.")}
         </div>
       </article>
       <article class="card">
@@ -765,6 +767,66 @@ function routeAnalytics() {
   `);
 }
 
+function routeFunScience() {
+  const joke = SCIENCE_JOKES[Math.floor(Math.random() * SCIENCE_JOKES.length)];
+  render(`
+    ${header("Fun Science", "Project 528 memory lab", "Mnemonics, visual hooks, tips, and a little science humor for the long study road.")}
+    <section class="fun-hero">
+      <div>
+        <p class="page-kicker">Study Fuel</p>
+        <h2>Make the sticky stuff stick</h2>
+        <p>Use these as quick mental handles before practice sets. The MCAT still asks for reasoning, but memory hooks make reasoning faster.</p>
+      </div>
+      <div class="atom-graphic" aria-hidden="true">
+        <span></span><span></span><span></span><strong>528</strong>
+      </div>
+    </section>
+    <section class="concept-grid">
+      ${SCIENCE_GRAPHICS.map((item) => `
+        <article class="concept-card ${esc(item.color)}">
+          <div class="concept-icon">${esc(item.icon)}</div>
+          <h2>${esc(item.title)}</h2>
+          <p>${esc(item.blurb)}</p>
+          <code>${esc(item.formula)}</code>
+        </article>
+      `).join("")}
+    </section>
+    <section class="grid two" style="margin-top:1rem">
+      <article class="card">
+        <h2>Mnemonic Wall</h2>
+        <div class="mnemonic-list">
+          ${MNEMONICS.map((item) => `
+            <div class="mnemonic-item">
+              <span class="pill">${esc(item.section)}</span>
+              <h3>${esc(item.title)}</h3>
+              <strong>${esc(item.phrase)}</strong>
+              <p>${esc(item.meaning)}</p>
+            </div>
+          `).join("")}
+        </div>
+      </article>
+      <aside class="card">
+        <h2>Tips And Tricks</h2>
+        <div class="tip-list">
+          ${MCAT_TIPS.map((item) => `
+            <div class="tip-item">
+              <span>${esc(item.tag)}</span>
+              <strong>${esc(item.title)}</strong>
+              <p>${esc(item.text)}</p>
+            </div>
+          `).join("")}
+        </div>
+      </aside>
+    </section>
+    <section class="joke-strip">
+      <p class="page-kicker">Tiny Brain Break</p>
+      <blockquote>${esc(joke)}</blockquote>
+      <button id="newJoke" class="ghost-button" type="button">Another one</button>
+    </section>
+  `);
+  document.querySelector("#newJoke").addEventListener("click", routeFunScience);
+}
+
 function chartCard(title, rows) {
   const body = rows.length ? rows.map((row) => `<div class="bar-row"><strong>${esc(row.label)}</strong>${progressBar(row.accuracy)}<span>${row.accuracy}%</span></div>`).join("") : `<p>No data yet.</p>`;
   return `<article class="card"><h2>${esc(title)}</h2><div class="chart">${body}</div></article>`;
@@ -1018,6 +1080,7 @@ initRouter({
   "/spaced": routeSpaced,
   "/bank": routeBank,
   "/analytics": routeAnalytics,
+  "/fun": routeFunScience,
   "/editor": routeEditor,
   "/ingestion": routeIngestion,
   "/drafts": routeDrafts
