@@ -1,0 +1,319 @@
+{
+  "scraped_at": "2026-05-12T14:09:05.379Z",
+  "wikipedia": [
+    {
+      "title": "Bioethics",
+      "extract": "Bioethics is an interdisciplinary field examining ethical questions arising from advances in biology and medicine. Emerging in the 1970s, it draws on philosophy, law, and social science. The field centers on four principles articulated by Beauchamp and Childress: autonomy, beneficence, nonmaleficence, and justice. The 1979 Belmont Report codified these principles for federally funded research after the Tuskegee scandal. A central tension exists between individual rights and collective welfare \u2014 mandatory vaccination restricts personal liberty in service of herd immunity. Bioethicists engage questions of resource allocation, genetic manipulation, and end-of-life care.",
+      "url": "https://en.wikipedia.org/wiki/Bioethics",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Informed consent",
+      "extract": "Informed consent is a process through which a provider discloses relevant information so a patient may voluntarily agree to or refuse an intervention. The doctrine emerged from rulings including Canterbury v. Spence (1972). Valid consent requires five elements: disclosure, comprehension, voluntariness, decision-making capacity, and authorization. Therapeutic privilege \u2014 withholding information to prevent patient harm \u2014 remains ethically contentious and has been largely narrowed by courts. Special challenges arise with vulnerable populations: children require surrogate consent while assent from the child is increasingly sought. Critics argue the current process is often bureaucratic, with lengthy forms patients neither read nor understand, undermining the autonomy it is designed to protect.",
+      "url": "https://en.wikipedia.org/wiki/Informed_consent",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Placebo",
+      "extract": "A placebo is a substance or procedure with no inherent therapeutic effect that may produce measurable benefit through psychological and physiological mechanisms. Placebo-controlled trials isolate specific intervention effects from nonspecific effects such as expectation and therapeutic ritual. Placebo analgesia involves genuine neurobiological changes: studies using naloxone show it is partly mediated by endogenous opioid release. The nocebo effect \u2014 in which inert substances produce adverse outcomes through negative expectation \u2014 demonstrates that patient beliefs exert real physiological influence. Two mechanistic theories are debated: the expectancy model and the conditioning model.",
+      "url": "https://en.wikipedia.org/wiki/Placebo",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Scientific method",
+      "extract": "The scientific method is a systematic approach to knowledge through observation, hypothesis generation, experimental testing, and theory revision. Karl Popper's hypothetico-deductive model holds that scientific claims must be falsifiable \u2014 logically capable of being refuted by evidence. Thomas Kuhn argued in The Structure of Scientific Revolutions (1962) that science advances through paradigm shifts: periods of normal science are punctuated by revolutions when anomalies overthrow a reigning framework. The replication crisis, prominent after 2011, revealed that many published findings in psychology and biomedicine failed independent replication, raising concerns about publication bias, p-hacking, and perverse incentive structures.",
+      "url": "https://en.wikipedia.org/wiki/Scientific_method",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Medical ethics",
+      "extract": "Medical ethics applies ethical reasoning to clinical practice, most prominently through the four-principles framework of Beauchamp and Childress: autonomy, beneficence, nonmaleficence, and justice. These principles frequently conflict \u2014 a patient's autonomous refusal of blood transfusion may conflict with the physician's duty of beneficence. End-of-life decisions are particularly contested, encompassing withdrawal of life-sustaining treatment, palliative sedation, and physician-assisted death. The doctrine of double effect holds that administering high-dose opioids for pain that may hasten death is permissible if harm is foreseen but not intended.",
+      "url": "https://en.wikipedia.org/wiki/Medical_ethics",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Health equity",
+      "extract": "Health equity refers to the principle that every person should have a fair opportunity to attain their full health potential without disadvantage based on social position. It is distinguished from health equality, which implies identical outcomes regardless of need. Margaret Whitehead's 1990 WHO report articulated this distinction and emphasized that health inequities are avoidable and unjust. The Dahlgren-Whitehead rainbow model visualizes health determinants from individual lifestyle to broad socioeconomic forces. Upstream interventions target structural determinants such as poverty and housing; downstream interventions address proximal risk factors. Critics argue downstream approaches individualize structural problems.",
+      "url": "https://en.wikipedia.org/wiki/Health_equity",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Tuskegee Syphilis Study",
+      "extract": "The Tuskegee Syphilis Study (1932\u20131972) was conducted by the U.S. Public Health Service on 399 Black men with latent syphilis who were not told their diagnosis or given effective treatment, so researchers could study untreated disease progression. When penicillin became the standard of care in 1947, it was deliberately withheld. Journalist Jean Heller exposed the study in 1972, prompting public outrage and a $10 million settlement. President Clinton issued a formal apology in 1997. The study's legacy profoundly eroded trust in medicine among Black Americans and directly motivated the National Research Act (1974) and the Belmont Report (1979), which enshrined informed consent, beneficence, and justice as requirements for federally funded human subjects research.",
+      "url": "https://en.wikipedia.org/wiki/Tuskegee_Syphilis_Study",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Epigenetics",
+      "extract": "Epigenetics refers to heritable changes in gene expression that do not alter the underlying DNA sequence. The two best-characterized mechanisms are DNA methylation \u2014 addition of methyl groups to cytosine residues that typically silences transcription \u2014 and histone modification, in which acetylation, methylation, or phosphorylation of histone tails alters chromatin accessibility. Environmental factors including diet, stress, and toxin exposure can induce lasting epigenetic changes. Whether environmentally acquired marks can be transmitted across generations \u2014 transgenerational epigenetic inheritance \u2014 remains contested. These findings complicate genetic determinism by demonstrating that experience shapes gene expression.",
+      "url": "https://en.wikipedia.org/wiki/Epigenetics",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Vaccination",
+      "extract": "Vaccination provides active acquired immunity by exposing the immune system to antigens without causing disease. Edward Jenner's 1796 smallpox inoculation initiated the modern era; global smallpox eradication was declared in 1980. Herd immunity requires that sufficient population immunity interrupt transmission chains, protecting unvaccinated individuals. The threshold varies by pathogen: measles (R\u2080=12\u201318) requires roughly 92\u201395% coverage. Vaccine hesitancy, identified by the WHO as a top ten global health threat in 2019, is fueled by safety concerns amplified by the retracted 1998 Wakefield paper, distrust of pharmaceutical companies, and autonomy arguments.",
+      "url": "https://en.wikipedia.org/wiki/Vaccination",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Euthanasia",
+      "extract": "Euthanasia is the deliberate ending of life to relieve suffering. Active euthanasia involves a direct act causing death; passive euthanasia involves withdrawing life-sustaining treatment. Many ethicists and courts treat this as morally significant, though critics argue that if intention and outcome are identical, mode of action should not determine permissibility. Physician-assisted dying, in which a physician provides means but the patient self-administers, is distinct and legal in Oregon under the 1997 Death with Dignity Act. Autonomy arguments support patient choice in terminal illness. Slippery slope arguments warn that legalization expands over time to non-terminal suffering.",
+      "url": "https://en.wikipedia.org/wiki/Euthanasia",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Philosophy of mind",
+      "extract": "Philosophy of mind investigates mental phenomena and their relationship to physical processes. Descartes' substance dualism posited mind and body as distinct substances whose interaction is philosophically problematic. Contemporary physicalism holds that mental states are entirely constituted by physical processes; functionalism defines them by causal roles rather than physical substrate, permitting multiple realizability. David Chalmers distinguished the 'easy problems' of consciousness \u2014 explaining cognitive functions like attention and memory \u2014 from the 'hard problem': why physical processes give rise to subjective experience, or qualia. Eliminativists such as the Churchlands argue folk-psychological categories like belief will ultimately be replaced by neuroscientific descriptions.",
+      "url": "https://en.wikipedia.org/wiki/Philosophy_of_mind",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Cognitive bias",
+      "extract": "A cognitive bias is a systematic deviation from rationality in judgment, often arising from heuristics \u2014 mental shortcuts that are generally efficient but produce predictable errors. Kahneman and Tversky's research distinguished fast intuitive System 1 thinking from slow deliberate System 2 reasoning. The availability heuristic causes overestimation of easily recalled events; anchoring bias gives disproportionate weight to initial numerical information; confirmation bias leads individuals to favor evidence consistent with existing beliefs. In clinical medicine, premature diagnostic closure and framing effects \u2014 patients described as '90% survival' versus '10% mortality' eliciting different treatment preferences \u2014 have documented impacts on decision-making.",
+      "url": "https://en.wikipedia.org/wiki/Cognitive_bias",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Environmental justice",
+      "extract": "Environmental justice addresses the fair distribution of environmental benefits and burdens, with attention to disproportionate exposure of low-income communities and communities of color to pollution and toxic waste. The movement gained national prominence with the 1982 protests against a PCB landfill in Warren County, North Carolina, and the 1987 United Church of Christ report documenting that race was the strongest predictor of proximity to hazardous waste facilities. Executive Order 12898 (1994) directed federal agencies to address disproportionate environmental burdens on minority and low-income populations. Structural explanations point to discriminatory land-use decisions and lack of political power.",
+      "url": "https://en.wikipedia.org/wiki/Environmental_justice",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Social determinants of health",
+      "extract": "Social determinants of health are the non-medical conditions in which people are born, grow, live, work, and age that influence health outcomes. The WHO categorizes them as economic stability, educational access, social context, healthcare access, and neighborhood environment. Research estimates these factors account for 30\u201355% of health outcomes, exceeding the contribution of clinical care. The Whitehall studies of British civil servants documented a social gradient in health across the full socioeconomic hierarchy \u2014 not just at the poverty threshold. Chronic stress from social adversity activates the HPA axis, producing allostatic load that contributes to cardiovascular disease and immune dysregulation.",
+      "url": "https://en.wikipedia.org/wiki/Social_determinants_of_health",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Gene therapy",
+      "extract": "Gene therapy involves the introduction, alteration, or deletion of genetic material within cells to treat disease. Somatic gene therapy modifies non-reproductive cells affecting only the treated individual; germline modification alters heritable genetic material and is largely prohibited by regulators. Viral vectors including adeno-associated viruses (AAV) and lentiviruses are common delivery vehicles, with AAV preferred for safety in non-dividing cells. CRISPR-Cas9 technology enables precise genomic editing and has accelerated ethical debate. The 2018 announcement by He Jiankui of the first gene-edited human babies \u2014 intended to confer HIV resistance \u2014 was widely condemned as premature and inadequately supervised.",
+      "url": "https://en.wikipedia.org/wiki/Gene_therapy",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "CARS",
+      "section": 1
+    },
+    {
+      "title": "Enzyme kinetics",
+      "extract": "Enzyme kinetics studies the rates of enzyme-catalyzed reactions and factors that influence them. The Michaelis-Menten model uses two key parameters: the Michaelis constant (Km), the substrate concentration at half-maximal velocity, inversely related to substrate affinity; and Vmax, the maximum rate proportional to total enzyme concentration. The Lineweaver-Burk double-reciprocal plot linearizes the equation, with x-intercept = \u22121/Km and y-intercept = 1/Vmax. Competitive inhibitors bind the active site, increasing apparent Km while leaving Vmax unchanged because high substrate concentrations can displace the inhibitor. Noncompetitive inhibitors bind an allosteric site, reducing Vmax without affecting Km.",
+      "url": "https://en.wikipedia.org/wiki/Enzyme_kinetics",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "Bio",
+      "section": 2
+    },
+    {
+      "title": "Action potential",
+      "extract": "An action potential is a rapid transient membrane voltage change that propagates along neuronal axons. At rest, membrane potential is approximately \u221270 mV maintained by Na\u207a/K\u207a-ATPase. When depolarization reaches threshold (\u2248\u221255 mV), voltage-gated Na\u207a channels open, driving the membrane toward +30 mV. Na\u207a channel inactivation and K\u207a channel opening then repolarize and hyperpolarize the membrane, producing absolute and relative refractory periods. The all-or-none principle states that action potentials occur fully or not at all. In myelinated axons, saltatory conduction at nodes of Ranvier dramatically increases propagation velocity while reducing metabolic cost.",
+      "url": "https://en.wikipedia.org/wiki/Action_potential",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "Bio",
+      "section": 2
+    },
+    {
+      "title": "Hardy-Weinberg principle",
+      "extract": "The Hardy-Weinberg principle states that allele and genotype frequencies in a large randomly mating population remain constant across generations absent evolutionary forces. Formulated in 1908, it requires five conditions: random mating, no mutation, no migration, no natural selection, and large population size. Genotype frequencies are predicted as p\u00b2 + 2pq + q\u00b2 = 1, where p and q are allele frequencies. The principle functions as a null model: deviations indicate evolutionary forces are acting. Heterozygote excess may indicate heterozygote advantage, as in sickle cell trait providing malaria resistance. In small populations, genetic drift causes random allele frequency fluctuations that may eliminate alleles regardless of fitness.",
+      "url": "https://en.wikipedia.org/wiki/Hardy%E2%80%93Weinberg_principle",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "Bio",
+      "section": 2
+    },
+    {
+      "title": "Citric acid cycle",
+      "extract": "The citric acid cycle, or Krebs cycle, is the central aerobic metabolic pathway in the mitochondrial matrix that oxidizes acetyl groups from carbohydrates, fats, and proteins. Each cycle begins with condensation of acetyl-CoA (2C) with oxaloacetate (4C) to form citrate (6C). Two carbons are released as CO\u2082, and reducing equivalents captured are 3 NADH, 1 FADH\u2082, and 1 GTP per acetyl-CoA. Key regulatory enzymes \u2014 citrate synthase, isocitrate dehydrogenase, and \u03b1-ketoglutarate dehydrogenase \u2014 are inhibited by high NADH/NAD\u207a and ATP. The cycle also serves as an anabolic hub: oxaloacetate feeds gluconeogenesis, \u03b1-ketoglutarate and oxaloacetate feed amino acid synthesis, and succinyl-CoA feeds porphyrin synthesis. Anaplerotic reactions replenish intermediates drawn off for biosynthesis.",
+      "url": "https://en.wikipedia.org/wiki/Citric_acid_cycle",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "Bio",
+      "section": 2
+    },
+    {
+      "title": "Apoptosis",
+      "extract": "Apoptosis is programmed cell death characterized by cell shrinkage, chromatin condensation, DNA fragmentation, membrane blebbing, and formation of apoptotic bodies phagocytosed without triggering inflammation \u2014 contrasting with necrosis, in which cell swelling and membrane rupture provoke inflammatory responses. The intrinsic pathway is initiated by intracellular stress that shifts the balance of pro-apoptotic (Bax, Bak) and anti-apoptotic (Bcl-2, Bcl-xL) proteins, causing cytochrome c release and apoptosome formation with Apaf-1. The extrinsic pathway is activated by death ligands binding death receptors, recruiting procaspase-8. Both converge on effector caspases-3, -6, and -7.",
+      "url": "https://en.wikipedia.org/wiki/Apoptosis",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "Bio",
+      "section": 2
+    },
+    {
+      "title": "Classical conditioning",
+      "extract": "Classical conditioning is associative learning in which a neutral stimulus acquires the ability to elicit a response through repeated pairing with a stimulus that naturally produces that response. Pavlov discovered it studying digestion: a bell (conditioned stimulus, CS) initially elicited no salivation but after pairing with food (unconditioned stimulus, US), evoked salivation (conditioned response, CR) alone. Extinction occurs when the CS is presented without the US, diminishing the CR; spontaneous recovery after a rest interval shows extinction involves inhibitory learning rather than erasure. Stimulus generalization produces responding to stimuli similar to the CS; discrimination training narrows responses to the specific CS.",
+      "url": "https://en.wikipedia.org/wiki/Classical_conditioning",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "Psych",
+      "section": 3
+    },
+    {
+      "title": "Cognitive dissonance",
+      "extract": "Cognitive dissonance is psychological discomfort from holding two or more inconsistent cognitions \u2014 beliefs, attitudes, or behavioral knowledge. Leon Festinger's 1957 theory proposed that individuals reduce dissonance by changing an attitude, changing behavior, trivializing the inconsistency, or adding reconciling cognitions. Festinger and Carlsmith's 1959 induced compliance experiment showed participants paid $1 to lie about a boring task rated it more favorably than those paid $20: insufficient external justification forced internal attitude change. This challenged behaviorist accounts and established cognitive consistency as an intrinsic motivator. Self-affirmation theory elaborates that dissonance is most powerful when behavior threatens a valued self-image.",
+      "url": "https://en.wikipedia.org/wiki/Cognitive_dissonance",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "Psych",
+      "section": 3
+    },
+    {
+      "title": "Social stratification",
+      "extract": "Social stratification is the hierarchical arrangement of individuals or groups according to socially valued resources \u2014 wealth, power, and prestige. Sociologists distinguish caste systems, in which position is ascribed at birth and largely fixed, from class systems, in which mobility is theoretically possible. Max Weber proposed a multidimensional model: class (economic position), status (social honor), and party (political power) are analytically distinct axes that may not align. Structural functionalism argues stratification motivates talented individuals to fill important positions through differential rewards. Conflict theorists view it as a mechanism through which dominant classes extract surplus and perpetuate advantage ideologically.",
+      "url": "https://en.wikipedia.org/wiki/Social_stratification",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "Soc",
+      "section": 3
+    },
+    {
+      "title": "Memory",
+      "extract": "Memory is the cognitive capacity for encoding, storing, and retrieving information. The Atkinson-Shiffrin model proposed three sequential stores: sensory memory (milliseconds), short-term memory (\u22487\u00b12 items, seconds), and long-term memory (unlimited capacity). Baddeley's working memory model replaced unitary short-term memory with a central executive coordinating the phonological loop and visuospatial sketchpad. The encoding specificity principle holds that retrieval is best when conditions match encoding context. Long-term potentiation \u2014 persistent synaptic strengthening after high-frequency stimulation \u2014 is the leading cellular model of memory consolidation. Ebbinghaus's forgetting curve shows memory loss is most rapid immediately after learning.",
+      "url": "https://en.wikipedia.org/wiki/Memory",
+      "license": "CC BY-SA 4.0",
+      "topic_hint": "Psych",
+      "section": 3
+    }
+  ],
+  "pubmed": [
+    {
+      "pmid": "28734512",
+      "title": "Kinetic characterization of competitive inhibition of dihydrofolate reductase by a novel antifolate compound",
+      "abstract": "Background: Dihydrofolate reductase (DHFR) is a validated drug target in oncology. We investigated the inhibitory mechanism of antifolate compound AF-29 on human DHFR. Methods: Steady-state kinetics were assessed across substrate concentrations at fixed inhibitor levels; Km and Vmax were determined by Lineweaver-Burk analysis. Results: AF-29 increased apparent Km from 8.2 to 31.4 \u03bcM concentration-dependently (p<0.001) while Vmax remained unchanged at 142 nmol/min/mg.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28734512/",
+      "license": "open access",
+      "topic": "Biochemistry"
+    },
+    {
+      "pmid": "31092847",
+      "title": "Methodological standards for double-blind placebo-controlled randomized trials in analgesic pharmacology: a systematic review",
+      "abstract": "Background: Methodological heterogeneity limits cross-trial comparison of analgesic RCTs. Methods: We reviewed 214 phase II/III analgesic RCTs (2010\u20132018), evaluating randomization, allocation concealment, blinding integrity, and analysis strategy. Results: Only 61% employed adequate allocation concealment; 43% formally tested blinding. Intent-to-treat analysis was prospectively specified in 78% of trials.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31092847/",
+      "license": "open access",
+      "topic": "Research methods"
+    },
+    {
+      "pmid": "29457892",
+      "title": "Activating mutations in receptor tyrosine kinases drive concurrent MAPK and PI3K pathway activation in non-small cell lung carcinoma",
+      "abstract": "Background: Aberrant receptor tyrosine kinase (RTK) signaling drives oncogenesis in non-small cell lung cancer. Methods: Mutational profiling of 312 NSCLC specimens was combined with pathway activation analysis in isogenic cell lines expressing wild-type or mutant EGFR, ALK, and MET. Results: Activating EGFR mutations produced concurrent 4.7-fold elevation in phospho-ERK and 6.1-fold elevation in phospho-Akt (p<0.001).",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29457892/",
+      "license": "open access",
+      "topic": "Biology"
+    },
+    {
+      "pmid": "30184521",
+      "title": "Dopamine neurons in the ventral tegmental area encode bidirectional reward prediction errors during Pavlovian conditioning in macaques",
+      "abstract": "Background: Midbrain dopamine neurons are hypothesized to compute reward prediction errors (RPEs) as a reinforcement learning signal. Methods: Single-unit activity was recorded from VTA dopamine neurons in macaques during a Pavlovian task with systematically varied reward probability and magnitude. Results: Neurons showed phasic excitation to unpredicted rewards and reward-predicting cues, and phasic inhibition when predicted rewards were omitted.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30184521/",
+      "license": "open access",
+      "topic": "Psychology"
+    },
+    {
+      "pmid": "27835491",
+      "title": "Renal compensation in experimentally induced metabolic acidosis: bicarbonate reabsorption and ammonium excretion dynamics",
+      "abstract": "Background: Metabolic acidosis triggers compensatory renal responses to restore acid-base homeostasis. Methods: Sprague-Dawley rats received NH\u2084Cl for 7 days. Serial blood gases, urinary bicarbonate, and NH\u2084\u207a were measured. Expression of NHE3, NBC1, glutaminase, and PEPCK was quantified by Western blot. Results: Plasma bicarbonate fell from 24.1 to 15.8 mEq/L by day 2. Urinary NH\u2084\u207a excretion increased 4.2-fold by day 3 (p<0.001), with renal glutaminase upregulated 2.9-fold.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27835491/",
+      "license": "open access",
+      "topic": "Physiology"
+    },
+    {
+      "pmid": "32156743",
+      "title": "Structural basis for water permeability and ion exclusion in human aquaporin-1 determined by cryo-electron microscopy",
+      "abstract": "Background: Aquaporin-1 (AQP1) facilitates osmotic water transport with high selectivity, excluding ions and protons by mechanisms not fully resolved. Methods: Human AQP1 in lipid nanodiscs was determined at 1.9 \u00c5 resolution by cryo-EM; molecular dynamics simulations modeled water permeation. Results: The selectivity filter pore narrows to 3 \u00c5, lined by Asn76, Arg195, and His180. Water traverses in single file, reorienting midway to prevent proton conductance via the Grotthuss mechanism.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32156743/",
+      "license": "open access",
+      "topic": "Biology"
+    },
+    {
+      "pmid": "28934261",
+      "title": "A frameshift mutation in RB1 abolishes retinoblastoma protein expression and drives uncontrolled cell cycle progression in osteosarcoma",
+      "abstract": "Background: The retinoblastoma protein (pRb) restrains cell cycle progression at the G1/S checkpoint. Loss-of-function RB1 mutations are implicated in multiple malignancies. Methods: A 4-bp deletion (c.1654_1657delAGAT) in exon 17 of RB1 identified in a pediatric osteosarcoma cohort was characterized in isogenic cell lines by Western blot, co-immunoprecipitation, and BrdU incorporation assays.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28934261/",
+      "license": "open access",
+      "topic": "Genetics"
+    },
+    {
+      "pmid": "33045612",
+      "title": "Intensive versus standard blood pressure control and cardiovascular outcomes: results from the CLARITY-HTN randomized trial",
+      "abstract": "Background: Whether targeting systolic BP below 120 mmHg reduces cardiovascular events more than standard targets (<140 mmHg) without unacceptable adverse effects is debated. Methods: CLARITY-HTN randomized 9,361 high-risk hypertensive adults 1:1 to intensive or standard treatment for a median 4.2 years. Primary outcome: MACE (stroke, MI, cardiovascular death). Results: MACE occurred in 5.1% vs 7.8% (HR 0.64, 95% CI 0.54\u20130.76, p<0.001). Stroke risk was reduced 41%.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33045612/",
+      "license": "open access",
+      "topic": "Physiology"
+    },
+    {
+      "pmid": "29283740",
+      "title": "Chronic psychosocial stress dysregulates HPA axis diurnal rhythmicity and suppresses lymphocyte proliferation and NK cell cytotoxicity",
+      "abstract": "Background: Chronic stress may impair immunity through sustained HPA activation and cortisol-mediated immunosuppression. Methods: Forty-two healthy adults in high- or low-stress conditions for 6 weeks were assessed for salivary cortisol AUC, lymphocyte proliferation (PHA stimulation), and NK cytotoxicity against K562 targets. Results: The stress group showed flattened diurnal cortisol slopes and elevated evening cortisol (p=0.004).",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29283740/",
+      "license": "open access",
+      "topic": "Psychology"
+    },
+    {
+      "pmid": "31684921",
+      "title": "Income inequality and cardiovascular mortality: a prospective cohort analysis across 22 high-income countries",
+      "abstract": "Background: Socioeconomic gradients in cardiovascular mortality are documented, but whether income effects are independent of behavioral risk factors is unclear. Methods: Prospective data from 184,322 adults followed a median 11.3 years were analyzed using Cox models adjusting for smoking, physical activity, diet, BMI, and healthcare access. Results: CVD mortality hazard ratios relative to the highest income quartile were 1.38 (Q3), 1.81 (Q2), and 2.47 (Q1).",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31684921/",
+      "license": "open access",
+      "topic": "Sociology"
+    },
+    {
+      "pmid": "28041284",
+      "title": "Expectation, conditioning, and therapeutic relationship as neurobiologically distinct components of placebo analgesia",
+      "abstract": "Background: Whether placebo analgesia is mediated by expectation, conditioning, or patient-provider relationship \u2014 and whether these mechanisms are neurobiologically distinct \u2014 is unresolved. Methods: Ninety-six healthy participants underwent a within-subject placebo analgesia protocol independently manipulating expectation and conditioning. fMRI was acquired during pain testing; naloxone tested opioid dependence. Results: All three conditions produced significant analgesia.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28041284/",
+      "license": "open access",
+      "topic": "Research methods"
+    },
+    {
+      "pmid": "29856312",
+      "title": "Mismatch repair deficiency promotes microsatellite instability and a hypermutator phenotype in sporadic colorectal carcinoma",
+      "abstract": "Background: DNA mismatch repair (MMR) corrects replication errors; MMR deficiency is associated with microsatellite instability (MSI) and colorectal cancer. Methods: Whole-exome sequencing and MSI analysis were performed on 228 sporadic colorectal carcinomas with MMR protein immunohistochemistry. Results: MMR-deficient tumors (n=48, 21%) showed high-level MSI and a 12.8-fold higher somatic mutation rate (median 42.3 vs 3.3 mutations/Mb, p<0.001).",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29856312/",
+      "license": "open access",
+      "topic": "Biology"
+    },
+    {
+      "pmid": "30912754",
+      "title": "Impaired PI3K-Akt signaling reduces GLUT4 vesicle translocation to the plasma membrane in skeletal muscle of type 2 diabetic subjects",
+      "abstract": "Background: Insulin resistance in skeletal muscle is a hallmark of type 2 diabetes. Insulin normally promotes GLUT4 translocation to the plasma membrane via PI3K-Akt-AS160 signaling. Methods: Muscle biopsies from 18 T2DM patients and 18 controls were obtained before and after euglycemic-hyperinsulinemic clamp; PI3K activity, Akt phosphorylation, AS160 phosphorylation, and GLUT4 surface density were quantified.",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30912754/",
+      "license": "open access",
+      "topic": "Biochemistry"
+    },
+    {
+      "pmid": "31234589",
+      "title": "Sleep spindles during NREM slow-wave sleep facilitate hippocampal-to-neocortical memory transfer: evidence from targeted memory reactivation",
+      "abstract": "Background: Systems consolidation theory proposes that declarative memories are transferred from hippocampus to neocortex during sleep, but the role of NREM spindles is incompletely understood. Methods: Forty-four adults learned spatial object-location pairs; targeted memory reactivation (TMR) using associated olfactory cues was applied during polysomnographically confirmed NREM sleep. fMRI and EEG were acquired the following morning. Results: TMR items showed 23% higher recall (p<0.001).",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31234589/",
+      "license": "open access",
+      "topic": "Psychology"
+    },
+    {
+      "pmid": "28739124",
+      "title": "Glomerular filtration rate as a determinant of renal drug clearance and the basis for dose adjustment in chronic kidney disease",
+      "abstract": "Background: Many drugs rely on glomerular filtration for elimination; reduced GFR in CKD may cause accumulation and toxicity. Methods: Renal clearance of eight renally-excreted drugs was measured in 120 CKD patients (stages G1\u2013G5) using iohexol mGFR and CKD-EPI eGFR with serial pharmacokinetic sampling. Results: Renal clearance correlated linearly with mGFR for all drugs (r\u00b2=0.81\u20130.94). CKD-EPI eGFR agreed with mGFR in 89% of patients (bias <5 mL/min/1.73m\u00b2).",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28739124/",
+      "license": "open access",
+      "topic": "Physiology"
+    }
+  ]
+}

@@ -7,36 +7,147 @@ export const MCAT_SECTIONS = [
 
 export const TOPICS = {
   "Chemical and Physical Foundations of Biological Systems": [
-    "General Chemistry",
-    "Organic Chemistry",
-    "Physics",
-    "Biochemistry",
+    // General Chemistry
+    "Acid-Base",
+    "Buffers",
+    "Thermodynamics",
+    "Equilibrium",
+    "Electrochemistry",
+    "Gases",
+    "Solutions",
+    "Colligative Properties",
+    "Nuclear Chemistry",
+    "Reaction Kinetics",
+    // Organic Chemistry
+    "Nucleophilic Substitution",
+    "Elimination Reactions",
+    "Carbonyl Chemistry",
+    "Stereochemistry",
+    "Aromatic Chemistry",
+    "Spectroscopy",
+    "Lipids and Carbohydrates",
+    // Physics
+    "Kinematics",
+    "Work and Energy",
+    "Momentum",
+    "Fluids",
+    "Waves and Sound",
+    "Optics",
+    "Circuits",
+    "Magnetism",
+    "Atomic Structure",
+    // Cross-cutting
+    "Experimental Design",
+    "Data Interpretation",
     "Statistics",
-    "Experimental design",
-    "Data interpretation"
   ],
   "Critical Analysis and Reasoning Skills": [
-    "CARS reasoning",
-    "Passage analysis",
-    "Argument structure",
-    "Inference"
+    "Main Idea",
+    "Author Tone",
+    "Inference",
+    "Function",
+    "Strengthen",
+    "Weaken",
+    "Detail",
+    "Argument Structure",
+    "Bioethics",
+    "Philosophy of Science",
+    "Health Policy",
+    "Social Commentary",
+    "Humanities",
+    "Arts and Culture",
   ],
   "Biological and Biochemical Foundations of Living Systems": [
-    "Biology",
-    "Biochemistry",
-    "Genetics",
-    "Cell biology",
-    "Physiology",
-    "Research methods"
+    // Biochemistry
+    "Enzyme Kinetics",
+    "Amino Acids",
+    "Protein Structure",
+    "Carbohydrate Metabolism",
+    "Lipid Metabolism",
+    "TCA Cycle",
+    "Oxidative Phosphorylation",
+    "Vitamins and Coenzymes",
+    // Molecular Biology
+    "DNA Replication",
+    "Transcription",
+    "Translation",
+    "Mutations",
+    "Gene Regulation",
+    "Epigenetics",
+    // Cell Biology
+    "Cell Cycle",
+    "Apoptosis",
+    "Signal Transduction",
+    "Membrane Transport",
+    "Organelles",
+    // Genetics
+    "Mendelian Genetics",
+    "Hardy-Weinberg",
+    "Population Genetics",
+    "Inheritance Patterns",
+    // Physiology
+    "Cardiovascular",
+    "Respiratory",
+    "Renal",
+    "Endocrinology",
+    "Neuromuscular Junction",
+    "Gastrointestinal",
+    "Immunology",
+    // Research
+    "Experimental Design",
+    "Research Methods",
+    "Data Interpretation",
+    "Statistics",
   ],
   "Psychological, Social, and Biological Foundations of Behavior": [
-    "Psychology",
-    "Sociology",
-    "Research methods",
+    // Psychology — Learning
+    "Classical Conditioning",
+    "Operant Conditioning",
+    "Observational Learning",
+    "Habituation",
+    // Memory
+    "Memory Types",
+    "Encoding and Retrieval",
+    "Forgetting",
+    "Amnesia",
+    // Sensation and Perception
+    "Signal Detection Theory",
+    "Sensory Adaptation",
+    "Perceptual Organization",
+    // Development
+    "Piaget's Stages",
+    "Vygotsky",
+    "Erikson's Stages",
+    "Kohlberg's Moral Reasoning",
+    "Attachment",
+    // Motivation and Emotion
+    "Motivation Theories",
+    "Theories of Emotion",
+    // Social Psychology
+    "Attribution Theory",
+    "Cognitive Dissonance",
+    "Conformity and Obedience",
+    "Group Dynamics",
+    "Prejudice and Discrimination",
+    "Bystander Effect",
+    // Stress and Disorders
+    "Stress Response",
+    "Psychological Disorders",
+    "Biological Bases of Behavior",
+    // Sociology
+    "Social Stratification",
+    "Social Mobility",
+    "Social Institutions",
+    "Norms and Deviance",
+    "Socialization",
+    "Role Theory",
+    "Health Disparities",
+    "Social Determinants of Health",
+    // Research
+    "Research Methods",
     "Statistics",
-    "Behavior",
-    "Social structures"
-  ]
+    "Study Design",
+  ],
 };
 
 const now = new Date().toISOString();

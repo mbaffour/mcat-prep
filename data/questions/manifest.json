@@ -1,247 +1,55 @@
 {
-  "generated_at": "2026-05-12T02:11:42.839Z",
-  "total_questions": 100000,
+  "generated_at": "2026-05-17T01:46:17.518Z",
+  "total_questions": 20000,
   "shard_size": 2500,
   "shards": [
     {
       "file": "questions-001.json",
       "count": 2500,
       "first_id": "demo-001",
-      "last_id": "bulk-01952"
+      "last_id": "exp-000406"
     },
     {
       "file": "questions-002.json",
       "count": 2500,
-      "first_id": "calc-00489",
-      "last_id": "bulk-03952"
+      "first_id": "cq-001742",
+      "last_id": "cq-003527"
     },
     {
       "file": "questions-003.json",
       "count": 2500,
-      "first_id": "calc-00989",
-      "last_id": "bulk-05952"
+      "first_id": "cq-003528",
+      "last_id": "cars-001861"
     },
     {
       "file": "questions-004.json",
       "count": 2500,
-      "first_id": "calc-01489",
-      "last_id": "bulk-07952"
+      "first_id": "cars-001862",
+      "last_id": "exp-001809"
     },
     {
       "file": "questions-005.json",
       "count": 2500,
-      "first_id": "calc-01989",
-      "last_id": "bulk-09952"
+      "first_id": "cq-003828",
+      "last_id": "cq-005792"
     },
     {
       "file": "questions-006.json",
       "count": 2500,
-      "first_id": "calc-02489",
-      "last_id": "bulk-11952"
+      "first_id": "cq-005793",
+      "last_id": "cq-007762"
     },
     {
       "file": "questions-007.json",
       "count": 2500,
-      "first_id": "calc-02989",
-      "last_id": "bulk-13952"
+      "first_id": "cq-007763",
+      "last_id": "exp-003059"
     },
     {
       "file": "questions-008.json",
       "count": 2500,
-      "first_id": "calc-03489",
-      "last_id": "bulk-15952"
-    },
-    {
-      "file": "questions-009.json",
-      "count": 2500,
-      "first_id": "calc-03989",
-      "last_id": "bulk-17952"
-    },
-    {
-      "file": "questions-010.json",
-      "count": 2500,
-      "first_id": "calc-04489",
-      "last_id": "bulk-19952"
-    },
-    {
-      "file": "questions-011.json",
-      "count": 2500,
-      "first_id": "calc-04989",
-      "last_id": "cars-01805"
-    },
-    {
-      "file": "questions-012.json",
-      "count": 2500,
-      "first_id": "cars-01806",
-      "last_id": "cars-04305"
-    },
-    {
-      "file": "questions-013.json",
-      "count": 2500,
-      "first_id": "cars-04306",
-      "last_id": "cars-06805"
-    },
-    {
-      "file": "questions-014.json",
-      "count": 2500,
-      "first_id": "cars-06806",
-      "last_id": "cars-09305"
-    },
-    {
-      "file": "questions-015.json",
-      "count": 2500,
-      "first_id": "cars-09306",
-      "last_id": "cars-11805"
-    },
-    {
-      "file": "questions-016.json",
-      "count": 2500,
-      "first_id": "cars-11806",
-      "last_id": "cars-14305"
-    },
-    {
-      "file": "questions-017.json",
-      "count": 2500,
-      "first_id": "cars-14306",
-      "last_id": "cars-16805"
-    },
-    {
-      "file": "questions-018.json",
-      "count": 2500,
-      "first_id": "cars-16806",
-      "last_id": "cars-19305"
-    },
-    {
-      "file": "questions-019.json",
-      "count": 2500,
-      "first_id": "cars-19306",
-      "last_id": "cars-21805"
-    },
-    {
-      "file": "questions-020.json",
-      "count": 2500,
-      "first_id": "cars-21806",
-      "last_id": "bulk-21524"
-    },
-    {
-      "file": "questions-021.json",
-      "count": 2500,
-      "first_id": "calc-05382",
-      "last_id": "bulk-23524"
-    },
-    {
-      "file": "questions-022.json",
-      "count": 2500,
-      "first_id": "calc-05882",
-      "last_id": "bulk-25524"
-    },
-    {
-      "file": "questions-023.json",
-      "count": 2500,
-      "first_id": "calc-06382",
-      "last_id": "bulk-27524"
-    },
-    {
-      "file": "questions-024.json",
-      "count": 2500,
-      "first_id": "calc-06882",
-      "last_id": "bulk-29524"
-    },
-    {
-      "file": "questions-025.json",
-      "count": 2500,
-      "first_id": "calc-07382",
-      "last_id": "bulk-31524"
-    },
-    {
-      "file": "questions-026.json",
-      "count": 2500,
-      "first_id": "calc-07882",
-      "last_id": "bulk-33524"
-    },
-    {
-      "file": "questions-027.json",
-      "count": 2500,
-      "first_id": "calc-08382",
-      "last_id": "bulk-35524"
-    },
-    {
-      "file": "questions-028.json",
-      "count": 2500,
-      "first_id": "calc-08882",
-      "last_id": "bulk-37524"
-    },
-    {
-      "file": "questions-029.json",
-      "count": 2500,
-      "first_id": "calc-09382",
-      "last_id": "bulk-39524"
-    },
-    {
-      "file": "questions-030.json",
-      "count": 2500,
-      "first_id": "calc-09882",
-      "last_id": "bulk-41651"
-    },
-    {
-      "file": "questions-031.json",
-      "count": 2500,
-      "first_id": "bulk-41652",
-      "last_id": "bulk-44151"
-    },
-    {
-      "file": "questions-032.json",
-      "count": 2500,
-      "first_id": "bulk-44152",
-      "last_id": "bulk-46651"
-    },
-    {
-      "file": "questions-033.json",
-      "count": 2500,
-      "first_id": "bulk-46652",
-      "last_id": "bulk-49151"
-    },
-    {
-      "file": "questions-034.json",
-      "count": 2500,
-      "first_id": "bulk-49152",
-      "last_id": "bulk-51651"
-    },
-    {
-      "file": "questions-035.json",
-      "count": 2500,
-      "first_id": "bulk-51652",
-      "last_id": "bulk-54151"
-    },
-    {
-      "file": "questions-036.json",
-      "count": 2500,
-      "first_id": "bulk-54152",
-      "last_id": "bulk-56651"
-    },
-    {
-      "file": "questions-037.json",
-      "count": 2500,
-      "first_id": "bulk-56652",
-      "last_id": "bulk-59151"
-    },
-    {
-      "file": "questions-038.json",
-      "count": 2500,
-      "first_id": "bulk-59152",
-      "last_id": "bulk-61651"
-    },
-    {
-      "file": "questions-039.json",
-      "count": 2500,
-      "first_id": "bulk-61652",
-      "last_id": "bulk-64151"
-    },
-    {
-      "file": "questions-040.json",
-      "count": 2500,
-      "first_id": "bulk-64152",
-      "last_id": "bulk-66651"
+      "first_id": "cq-009846",
+      "last_id": "cq-011929"
     }
   ]
 }
