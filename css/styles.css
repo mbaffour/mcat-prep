@@ -1026,16 +1026,61 @@ textarea {
   margin-top: 0.5rem;
 }
 
-.quiz-footer-secondary {
+.quiz-actions-menu {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.quiz-actions-toggle {
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--muted);
+  list-style: none;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.quiz-actions-toggle:hover {
+  color: var(--text);
+  background: var(--surface);
+}
+
+.quiz-actions-toggle::-webkit-details-marker { display: none; }
+
+.quiz-actions-panel {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.4rem;
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
 
 .confidence-field {
   min-width: 100px !important;
   flex: 0 1 110px !important;
+}
+
+.quiz-nav-top {
+  min-width: 38px;
+  min-height: 34px;
+  padding: 0 0.5rem;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.quiz-next-top {
+  min-width: 60px;
+  font-size: 0.88rem;
 }
 
 .quiz-nav {

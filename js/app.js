@@ -475,6 +475,8 @@ function renderQuiz(showReview = false) {
           <span class="quiz-answered-label">${score.answered} answered</span>
         </div>
         <div class="quiz-header-right">
+          <button id="prevTop" class="ghost-button quiz-nav-top" type="button" ${activeSession.index === 0 ? "disabled" : ""} aria-label="Previous question">←</button>
+          <button id="nextTop" class="quiz-nav-top quiz-next-top" type="button" aria-label="${isLast ? "Finish" : "Next question"}">${isLast ? "Finish ✓" : "→"}</button>
           ${activeSession.timed ? `<span class="timer${remaining <= 120 ? " urgent" : ""}" id="liveTimer">${formatTime(remaining)}</span>` : ""}
           <button id="submitSessionTop" class="ghost-button" type="button">Submit</button>
         </div>
@@ -509,12 +511,15 @@ function renderQuiz(showReview = false) {
         </div>
         ${reveal ? renderExplanation(question) : ""}
         <div class="quiz-footer">
-          <div class="quiz-footer-secondary">
-            <button id="flagQuestion" class="ghost-button" type="button">${currentFlagged ? "⚑ Unflag" : "⚐ Flag"}</button>
-            <button id="saveQuestion" class="ghost-button" type="button">♥ Save</button>
-            <button id="weakQuestion" class="ghost-button" type="button">⚠ Weak</button>
-            <label class="field compact confidence-field"><span>Confidence</span><select id="confidence"><option value="1">1 — low</option><option value="2">2</option><option value="3" selected>3 — mid</option><option value="4">4</option><option value="5">5 — high</option></select></label>
-          </div>
+          <details class="quiz-actions-menu">
+            <summary class="quiz-actions-toggle">⋮ More</summary>
+            <div class="quiz-actions-panel">
+              <button id="flagQuestion" class="ghost-button" type="button">${currentFlagged ? "⚑ Unflag" : "⚐ Flag"}</button>
+              <button id="saveQuestion" class="ghost-button" type="button">♥ Save</button>
+              <button id="weakQuestion" class="ghost-button" type="button">⚠ Weak</button>
+              <label class="field compact confidence-field"><span>Confidence</span><select id="confidence"><option value="1">1 — low</option><option value="2">2</option><option value="3" selected>3 — mid</option><option value="4">4</option><option value="5">5 — high</option></select></label>
+            </div>
+          </details>
           <div class="quiz-nav">
             <button id="prevQuestion" class="ghost-button" type="button" ${activeSession.index === 0 ? "disabled" : ""}>← Prev</button>
             <button id="submitSession" class="ghost-button" type="button">Submit</button>
@@ -522,7 +527,7 @@ function renderQuiz(showReview = false) {
           </div>
         </div>
         <div class="quiz-key-hints">
-          <kbd class="kbd">A–D</kbd> select &nbsp;·&nbsp; <kbd class="kbd">←</kbd><kbd class="kbd">→</kbd> navigate &nbsp;·&nbsp; <kbd class="kbd">F</kbd> flag &nbsp;·&nbsp; <kbd class="kbd">Enter</kbd> advance
+          <kbd class="kbd">A–D</kbd> select &nbsp;·&nbsp; <kbd class="kbd">←</kbd><kbd class="kbd">→</kbd> nav &nbsp;·&nbsp; <kbd class="kbd">F</kbd> flag &nbsp;·&nbsp; <kbd class="kbd">Enter</kbd> advance
         </div>
       </article>
       <aside class="card exam-sidebar">
@@ -559,17 +564,17 @@ function renderQuiz(showReview = false) {
       renderQuiz(activeSession.showExplanations === "end" ? false : showReview);
     });
   });
-  document.querySelector("#prevQuestion").addEventListener("click", () => {
-    activeSession.index -= 1;
-    renderQuiz(showReview);
-  });
-  document.querySelector("#nextQuestion").addEventListener("click", () => {
+  const goNext = () => {
     if (activeSession.index === activeSession.questions.length - 1) renderSessionResult();
-    else {
-      activeSession.index += 1;
-      renderQuiz(showReview);
-    }
-  });
+    else { activeSession.index += 1; renderQuiz(showReview); }
+  };
+  const goPrev = () => {
+    if (activeSession.index > 0) { activeSession.index -= 1; renderQuiz(showReview); }
+  };
+  document.querySelector("#prevQuestion").addEventListener("click", goPrev);
+  document.querySelector("#nextQuestion").addEventListener("click", goNext);
+  document.querySelector("#prevTop").addEventListener("click", goPrev);
+  document.querySelector("#nextTop").addEventListener("click", goNext);
   document.querySelector("#submitSession").addEventListener("click", renderSessionResult);
   document.querySelector("#submitSessionTop").addEventListener("click", renderSessionResult);
   document.querySelector("#flagQuestion").addEventListener("click", () => {
@@ -607,11 +612,10 @@ function renderQuiz(showReview = false) {
         renderQuiz(activeSession.showExplanations === "end" ? false : showReview);
       }
     } else if (e.key === "ArrowLeft") {
-      if (activeSession.index > 0) { activeSession.index -= 1; renderQuiz(showReview); }
+      goPrev();
     } else if (e.key === "ArrowRight" || (e.key === "Enter" && answer)) {
       e.preventDefault();
-      if (activeSession.index === activeSession.questions.length - 1) renderSessionResult();
-      else { activeSession.index += 1; renderQuiz(showReview); }
+      goNext();
     } else if (key === "f" && !e.ctrlKey && !e.metaKey) {
       activeSession.flagged = activeSession.flagged.includes(question.id)
         ? activeSession.flagged.filter((id) => id !== question.id)
