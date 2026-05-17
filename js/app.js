@@ -194,7 +194,7 @@ function routeDashboard() {
   }).join("") || `<tr><td colspan="3">No attempts yet. Start with Learning mode.</td></tr>`;
 
   render(`
-    ${header("Dashboard", "Project 528 command center", "A GitHub Pages-ready study workspace with legal ingestion, draft review, analytics, and persistent progress.")}
+    ${header("Dashboard", "Your MCAT command center", "Track progress across all four sections, identify weak topics, and launch targeted practice sessions.")}
     <section class="hero-panel">
       <div>
         <p class="page-kicker">Question Bank</p>
@@ -337,7 +337,7 @@ function routeLearning() {
     </section>
   `);
   document.querySelector("#startLearn").addEventListener("click", () => {
-    const selected = filterQuestions(questions(), readFilters("learn"));
+    const selected = filterQuestions(questions(), readFilters("learn"), true);
     startSession("learning", selected, {
       count: document.querySelector("#learnCount").value,
       showExplanations: "after_each"
@@ -358,7 +358,7 @@ function routePractice() {
     </section>
   `);
   document.querySelector("#startPractice").addEventListener("click", () => {
-    const selected = filterQuestions(questions(), readFilters("practice"));
+    const selected = filterQuestions(questions(), readFilters("practice"), true);
     startSession("practice", selected, {
       count: document.querySelector("#practiceCount").value,
       timed: document.querySelector("#practiceTimed").value === "1",
@@ -409,7 +409,7 @@ function routeTimed() {
     </section>
   `);
   document.querySelector("#startTimed").addEventListener("click", () => {
-    const selected = filterQuestions(questions(), readFilters("timed"));
+    const selected = filterQuestions(questions(), readFilters("timed"), true);
     startSession("timed_test", selected, {
       count: document.querySelector("#timedCount").value,
       timed: true,

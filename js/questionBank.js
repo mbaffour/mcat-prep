@@ -69,15 +69,23 @@ export function questionBankMeta() {
   return { ...bankMeta, loaded: bundledQuestions.length };
 }
 
-export function filterQuestions(questions, filters = {}) {
+export function filterQuestions(questions, filters = {}, deduplicate = false) {
+  const seenStems = deduplicate ? new Set() : null;
   return questions.filter((question) => {
     if (filters.search) {
       const haystack = `${question.stem} ${question.topic} ${question.subtopic} ${question.tags?.join(" ")}`.toLowerCase();
       if (!haystack.includes(filters.search.toLowerCase())) return false;
     }
-    return ["section", "topic", "subtopic", "difficulty", "question_type"].every((field) => {
+    const passes = ["section", "topic", "subtopic", "difficulty", "question_type"].every((field) => {
       return !filters[field] || filters[field] === "all" || question[field] === filters[field];
     });
+    if (!passes) return false;
+    if (seenStems) {
+      const stemKey = question.stem.trim().slice(0, 120);
+      if (seenStems.has(stemKey)) return false;
+      seenStems.add(stemKey);
+    }
+    return true;
   });
 }
 

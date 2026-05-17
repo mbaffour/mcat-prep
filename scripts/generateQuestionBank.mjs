@@ -1,7 +1,13 @@
 import { readFileSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
 import { createDemoQuestions, MCAT_SECTIONS } from "../js/demoData.js";
+import { chemPhysConcepts } from "./concepts/chemPhys.mjs";
+import { bioBiochemConcepts } from "./concepts/bioBiochem.mjs";
+import { psychSocConcepts } from "./concepts/psychSoc.mjs";
+import { carsPassages } from "./passages/carsPassages.mjs";
+import { vignettes, buildVignette } from "./passages/clinicalVignettes.mjs";
+import { enzymeKineticsTable, labValuesTable, experimentalResultsTable, hardyWeinbergTable, clearanceTable } from "./passages/tableGenerators.mjs";
 
-const targetCount = Number(process.argv[2] || 20000);
+const targetCount = Number(process.argv[2] || 60000);
 const shardSize  = Number(process.argv[3] || 2500);
 const now        = new Date().toISOString();
 const letters    = ["A", "B", "C", "D"];
@@ -9,7 +15,8 @@ const letters    = ["A", "B", "C", "D"];
 // ── Scraped content ───────────────────────────────────────────────────────────
 let scrapedContent = { wikipedia: [], pubmed: [] };
 try { scrapedContent = JSON.parse(readFileSync("data/scraped_content.json", "utf-8")); } catch { /* fallback */ }
-const carsPool   = scrapedContent.wikipedia.filter(w => w.topic_hint === "CARS" && (w.extract || "").length > 100);
+const scrapedCars = scrapedContent.wikipedia.filter(w => w.topic_hint === "CARS" && (w.extract || "").length > 100);
+const carsPool   = [...scrapedCars, ...carsPassages];
 const pubmedPool = scrapedContent.pubmed.filter(p => (p.abstract || "").length > 100);
 
 // ── Concept builder ───────────────────────────────────────────────────────────
@@ -17,8 +24,8 @@ function mk(si, topic, subtopic, stems, correct, distractors, wrongExps, explana
   return { section: MCAT_SECTIONS[si], topic, subtopic, stems, correct, distractors, wrong_explanations: wrongExps, explanation, takeaway, trap, related, formulas };
 }
 
-// ── Concept bank (~130 concepts) ──────────────────────────────────────────────
-const concepts = [
+// ── Concept bank core (~130 inline concepts) ─────────────────────────────────
+const conceptsCore = [
 
   // ==== CHEMICAL & PHYSICAL (section index 0) ====
 
@@ -827,6 +834,14 @@ const concepts = [
   ["Confounding","RCT design","Ecological fallacy"],[]),
 ];
 
+// ── Merge all concept arrays ──────────────────────────────────────────────────
+const concepts = [
+  ...conceptsCore,
+  ...chemPhysConcepts,
+  ...bioBiochemConcepts,
+  ...psychSocConcepts,
+];
+
 // ── Calculation generators (expanded) ────────────────────────────────────────
 const calcGenerators = [
   {
@@ -969,15 +984,29 @@ function baseQ({ id, section, topic, subtopic, difficulty, question_type, passag
 // Passage types to cycle through for non-CARS sections
 const passageTypes = ["discrete", "passage", "data_interpretation", "experimental_design"];
 
+const passageScenarios = [
+  "an in vitro enzymatic assay using purified recombinant protein",
+  "a controlled murine model with genetic knockout",
+  "a prospective randomized clinical trial",
+  "a retrospective cohort study in hospitalized patients",
+  "a computational pharmacokinetic model",
+  "a series of in vivo NMR spectroscopy experiments",
+  "a cell-free translation system",
+  "a double-blind crossover design with healthy volunteers",
+];
+
 function conceptQuestion(concept, idx) {
   const stem = concept.stems[idx % concept.stems.length];
   const qtype = passageTypes[idx % passageTypes.length];
   const isPassage = qtype !== "discrete";
+  const scenarioText = passageScenarios[idx % passageScenarios.length];
+  const tableEnrichedSubtopics = new Set(["Enzyme Kinetics","Acid-Base","Renal Physiology","Genetics","Experimental Design","Statistics"]);
+  const useTable = isPassage && tableEnrichedSubtopics.has(concept.subtopic) && idx % 4 === 0;
   const passage = isPassage ? {
     title: `${concept.subtopic} Scenario`,
-    text: `A study examines ${concept.subtopic.toLowerCase()} using ${["an in vitro enzymatic assay", "a controlled animal model", "a randomized clinical study", "a computational pharmacokinetic model"][idx % 4]}. Investigators are specifically interested in distinguishing ${concept.concept} from related phenomena.`,
+    text: `Researchers used ${scenarioText} to investigate ${concept.subtopic.toLowerCase()}. Findings are summarized in the data below.`,
     figures: [],
-    tables: [],
+    tables: useTable ? [enzymeKineticsTable(idx % 3)] : [],
   } : null;
 
   return baseQ({
@@ -1120,6 +1149,45 @@ function experimentalQuestion(pool, idx) {
   });
 }
 
+function clinicalVignetteQuestion(idx) {
+  const v = vignettes[idx % vignettes.length];
+  const passage = buildVignette(v);
+  const stemIdx = idx % v.stems.length;
+  const sh = shuffleChoices(v.correct, v.distractors, `vig-${idx}`);
+  const wrongMap = Object.fromEntries(sh.choices.map((c) => {
+    if (c.id === sh.correct_answer) return [c.id, "This is the correct answer."];
+    const origIdx = v.distractors.indexOf(c.text);
+    return [c.id, (v.wrong_explanations?.[origIdx]) || "This distractor targets a common misconception about this clinical scenario."];
+  }));
+  return {
+    id: `vig-${idx.toString().padStart(5, "0")}`,
+    section: MCAT_SECTIONS[v.section],
+    topic: v.topic,
+    subtopic: v.subtopic,
+    difficulty: "hard",
+    question_type: "passage",
+    passage,
+    stem: v.stems[stemIdx],
+    choices: sh.choices,
+    correct_answer: sh.correct_answer,
+    explanation: {
+      short: v.explanation,
+      detailed: `${v.explanation} This item tests integration of clinical findings with underlying physiology.`,
+      why_correct: `${sh.correct_answer} is correct: ${v.correct}.`,
+      wrong_answer_explanations: wrongMap,
+      high_yield_takeaway: v.correct,
+      common_trap: "Focusing on individual lab values rather than the clinical pattern as a whole.",
+      how_to_think: "Identify the primary disturbance from the lab pattern, then trace the underlying mechanism.",
+      related_concepts: [v.topic, v.subtopic],
+      formulas: [],
+    },
+    tags: [v.topic, v.subtopic, "clinical_vignette", "generated"],
+    estimated_time_seconds: 120,
+    source: { source_type: "original", license: "Original generated content for Project 528", attribution: "Project 528 vignette generator v3" },
+    review: { status: "approved", created_at: now, updated_at: now },
+  };
+}
+
 // ── Generation loop ───────────────────────────────────────────────────────────
 function buildTargets(total) {
   const weights = { [MCAT_SECTIONS[0]]: 59, [MCAT_SECTIONS[1]]: 53, [MCAT_SECTIONS[2]]: 59, [MCAT_SECTIONS[3]]: 59 };
@@ -1133,7 +1201,7 @@ function buildTargets(total) {
 const questions = [...createDemoQuestions()];
 const targets = buildTargets(targetCount);
 const counts = Object.fromEntries(MCAT_SECTIONS.map(s => [s, questions.filter(q => q.section === s).length]));
-let cqIdx = 0, calcIdx = 0, carsIdx = 0, expIdx = 0;
+let cqIdx = 0, calcIdx = 0, carsIdx = 0, expIdx = 0, vigIdx = 0;
 
 for (const section of MCAT_SECTIONS) {
   const sectionConcepts = concepts.filter(c => c.section === section);
@@ -1141,7 +1209,6 @@ for (const section of MCAT_SECTIONS) {
   while ((counts[section] || 0) < targets[section] && questions.length < targetCount) {
     let newQ;
     if (section === MCAT_SECTIONS[1]) {
-      // CARS: alternate between passage-based and experimental-style
       if (localIdx % 5 === 4 && pubmedPool.length > 0) {
         newQ = experimentalQuestion(pubmedPool, expIdx++);
         newQ.section = MCAT_SECTIONS[1];
@@ -1149,12 +1216,15 @@ for (const section of MCAT_SECTIONS) {
         newQ = carsQuestion(carsPool, carsIdx++);
       }
     } else {
-      const slot = localIdx % 12;
-      if (slot === 0 || slot === 6) {
+      const slot = localIdx % 15;
+      if (slot === 0 || slot === 7) {
         newQ = calculationQuestion(calcIdx++);
         if (newQ.section !== section) newQ = conceptQuestion(sectionConcepts[cqIdx % sectionConcepts.length] || concepts[cqIdx % concepts.length], cqIdx++);
-      } else if (slot === 3 || slot === 9) {
+      } else if (slot === 3 || slot === 10) {
         newQ = experimentalQuestion(pubmedPool, expIdx++);
+        newQ.section = section;
+      } else if (slot === 5 || slot === 12) {
+        newQ = clinicalVignetteQuestion(vigIdx++);
         newQ.section = section;
       } else {
         const concept = sectionConcepts[cqIdx % sectionConcepts.length] || concepts[cqIdx % concepts.length];
@@ -1170,6 +1240,9 @@ for (const section of MCAT_SECTIONS) {
 while (questions.length < targetCount) {
   questions.push(carsQuestion(carsPool, carsIdx++));
 }
+
+const uniqueStems = new Set(questions.map(q => q.stem.trim().slice(0, 100)));
+console.log(`Unique stems in bank: ${uniqueStems.size} (session-level dedup prevents repetition in play)`);
 
 // ── Sharding ──────────────────────────────────────────────────────────────────
 function writeShards(items, size) {

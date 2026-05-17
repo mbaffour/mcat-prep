@@ -1,6 +1,6 @@
 {
   "note": "Question bank sharded in data/questions/. This file is a pointer.",
   "manifest": "data/questions/manifest.json",
-  "total_questions": 20000,
-  "generated_at": "2026-05-17T01:46:17.518Z"
+  "total_questions": 60000,
+  "generated_at": "2026-05-17T19:30:40.115Z"
 }
