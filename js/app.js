@@ -228,14 +228,14 @@ function routeDashboard() {
       <article class="card">
         <h2>Quick Start</h2>
         <div class="mode-grid">
-          ${modeCard("#/learn", "Learning", "Immediate feedback", "Study one concept at a time.")}
-          ${modeCard("#/practice", "Practice", "Custom sets", "Filter by section, topic, type, and difficulty.")}
-          ${modeCard("#/test", "Timed Test", "Exam pacing", "Hide feedback until submission.")}
-          ${modeCard("#/simulation", "Full Length", "Section flow", "Configure section lengths and breaks.")}
-          ${modeCard("#/review", "Mistakes", "Retry misses", "Compare attempts and mark mastered.")}
-          ${modeCard("#/spaced", "Spaced Rep", "Due queue", "Review by confidence and history.")}
-          ${modeCard("#/fun", "Fun Science", "Mnemonics", "Bright concept cards, jokes, tips, and tricks.")}
-          ${modeCard("#/feedback", "Feedback", "Report issues", "Tell the maker what is broken or brilliant.")}
+          ${modeCard("#/learn", "📖 Learn", "Unseen questions first", "Explanations after each answer.")}
+          ${modeCard("#/practice", "🎯 Practice", "Build a custom set", "Filter section, topic, difficulty, type.")}
+          ${modeCard("#/test", "⏱ Timed", "Exam-style pressure", "Feedback hidden until you submit.")}
+          ${modeCard("#/simulation", "🧪 Full Length", "All four sections", "Official-style flow and timing.")}
+          ${modeCard("#/review", "🔴 Mistakes", "Turn misses into wins", "Retry every question you got wrong.")}
+          ${modeCard("#/spaced", "🔁 Spaced Rep", "Smart review queue", "Due questions ranked by confidence.")}
+          ${modeCard("#/analytics", "📊 Analytics", "Track your trends", "Accuracy by section, topic, difficulty.")}
+          ${modeCard("#/fun", "⚡ Fun Science", "Memory hooks", "Mnemonics, visual cards, quick challenges.")}
         </div>
       </article>
       <article class="card">
@@ -295,9 +295,23 @@ function readFilters(prefix = "filter") {
   };
 }
 
+function sortByStudyPriority(pool, attempts) {
+  const bestResult = new Map();
+  for (const a of attempts) {
+    if (!bestResult.has(a.questionId) || (bestResult.get(a.questionId) === true && !a.correct)) {
+      bestResult.set(a.questionId, a.correct);
+    }
+  }
+  const unseen  = shuffleArray(pool.filter(q => !bestResult.has(q.id)));
+  const wrong   = shuffleArray(pool.filter(q => bestResult.get(q.id) === false));
+  const correct = shuffleArray(pool.filter(q => bestResult.get(q.id) === true));
+  return [...unseen, ...wrong, ...correct];
+}
+
 function startSession(mode, sourceQuestions, options = {}) {
-  activeQuestionSet = sourceQuestions.length ? sourceQuestions : questions();
-  activeSession = createSession(activeQuestionSet, { mode, ...options });
+  const pool = sourceQuestions.length ? sourceQuestions : questions();
+  activeQuestionSet = sortByStudyPriority(pool, state.attempts);
+  activeSession = createSession(activeQuestionSet, { mode, shuffle: false, ...options });
   renderQuiz();
 }
 
@@ -434,69 +448,81 @@ function routeTimed() {
 
 function renderQuiz(showReview = false) {
   if (!activeSession?.questions.length) {
-    render(`${header("No Questions", "No matching questions found", "Try broader filters or add/import more approved questions.")}`);
+    render(`${header("No Questions", "No matching questions found", "Try broader filters or add more approved questions.")}`);
     return;
   }
   const question = activeSession.questions[activeSession.index];
   const answer = activeSession.answers[question.id];
-  const reveal = showReview || activeSession.showExplanations === "after_each" && answer;
+  const reveal = showReview || (activeSession.showExplanations === "after_each" && answer);
   const score = scoreSession(activeSession);
   const elapsed = Math.round((Date.now() - activeSession.startedAt) / 1000);
   const remaining = activeSession.seconds ? Math.max(0, activeSession.seconds - elapsed) : 0;
   const progressValue = Math.round(((activeSession.index + 1) / activeSession.questions.length) * 100);
   const answeredPercent = Math.round((score.answered / activeSession.questions.length) * 100);
   const currentNumber = activeSession.index + 1;
+  const total = activeSession.questions.length;
   const currentFlagged = activeSession.flagged.includes(question.id);
+  const isLast = activeSession.index === total - 1;
+  const modeName = activeSession.mode.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
 
   renderQuizHtml(`
-    <section class="exam-shell">
-      <div class="exam-topline">
-        <div>
-          <p class="page-kicker">${esc(activeSession.mode.replaceAll("_", " "))}</p>
-          <h1>Question ${currentNumber} of ${activeSession.questions.length}</h1>
+    <div class="quiz-chrome">
+      <div class="quiz-header">
+        <span class="quiz-mode-label">${esc(modeName)}</span>
+        <div class="quiz-progress-group">
+          <span class="quiz-count">${currentNumber} / ${total}</span>
+          ${progressBar(progressValue)}
+          <span class="quiz-answered-label">${score.answered} answered</span>
         </div>
-        <div class="exam-status">
-          <div class="timer ${remaining <= 120 && activeSession.timed ? "urgent" : ""}" id="liveTimer">${activeSession.timed ? formatTime(remaining) : "Untimed"}</div>
+        <div class="quiz-header-right">
+          ${activeSession.timed ? `<span class="timer${remaining <= 120 ? " urgent" : ""}" id="liveTimer">${formatTime(remaining)}</span>` : ""}
           <button id="submitSessionTop" class="ghost-button" type="button">Submit</button>
         </div>
       </div>
-      <div class="exam-progress">
-        <span>Item ${currentNumber}</span>
-        ${progressBar(progressValue)}
-        <span>${progressValue}%</span>
-      </div>
-    </section>
+    </div>
     <section class="exam-layout">
-      <article class="card question-panel exam-question">
+      <article class="card question-panel quiz-question-card">
         <div class="meta-row">
           <span class="pill">${esc(shortSection(question.section))}</span>
           <span class="pill">${esc(question.topic)}</span>
-          <span class="pill">${esc(question.difficulty)}</span>
-          <span class="pill">${esc(question.question_type)}</span>
-          <span class="pill">${question.estimated_time_seconds}s</span>
+          <span class="pill pill-${esc(question.difficulty)}">${esc(question.difficulty)}</span>
+          <span class="pill">${esc(question.question_type.replace(/_/g, " "))}</span>
         </div>
-        ${question.passage?.text ? `<div class="passage"><h2>${esc(question.passage.title || "Passage")}</h2><p>${esc(question.passage.text)}</p>${renderTables(question.passage.tables)}</div>` : ""}
-        <h2>${esc(question.stem)}</h2>
+        ${question.passage?.text ? `
+          <div class="passage">
+            <p class="passage-title">${esc(question.passage.title || "Passage")}</p>
+            <p>${esc(question.passage.text)}</p>
+            ${renderTables(question.passage.tables)}
+          </div>` : ""}
+        <p class="quiz-stem">${esc(question.stem)}</p>
         <div class="choices">
           ${question.choices.map((choice) => {
             const selected = answer?.choiceId === choice.id;
-            const correctness = reveal && choice.id === question.correct_answer ? " correct" : reveal && selected ? " incorrect" : "";
-            return `<button class="choice${selected ? " selected" : ""}${correctness}" data-choice="${choice.id}" type="button" ${answer && activeSession.showExplanations === "after_each" ? "disabled" : ""}><span class="choice-id">${choice.id}</span><span>${esc(choice.text)}</span></button>`;
+            const isCorrect = reveal && choice.id === question.correct_answer;
+            const isWrong = reveal && selected && !isCorrect;
+            const classes = ["choice", selected ? "selected" : "", isCorrect ? "correct" : "", isWrong ? "incorrect" : ""].filter(Boolean).join(" ");
+            return `<button class="${classes}" data-choice="${choice.id}" type="button" ${answer && activeSession.showExplanations === "after_each" ? "disabled" : ""}>
+              <span class="choice-id">${esc(choice.id)}</span>
+              <span class="choice-text">${esc(choice.text)}</span>
+            </button>`;
           }).join("")}
         </div>
-        <div class="toolbar">
-          <label class="field compact"><span>Confidence</span><select id="confidence"><option value="1">1 low</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5 high</option></select></label>
-          <button id="flagQuestion" class="ghost-button" type="button">${currentFlagged ? "Unflag" : "Flag"}</button>
-          <button id="saveQuestion" class="ghost-button" type="button">Save</button>
-          <button id="weakQuestion" class="ghost-button" type="button">Save to weak topics</button>
-          <button id="flashcardQuestion" class="ghost-button" type="button">Create flashcard</button>
-        </div>
         ${reveal ? renderExplanation(question) : ""}
-        <div class="toolbar">
-          <button id="prevQuestion" class="ghost-button" type="button" ${activeSession.index === 0 ? "disabled" : ""}>Previous</button>
-          <button id="nextQuestion" type="button">${activeSession.index === activeSession.questions.length - 1 ? "Finish" : "Next"}</button>
-          <button id="submitSession" class="ghost-button" type="button">Submit</button>
-          <span class="key-hints"><kbd class="kbd">A</kbd>–<kbd class="kbd">D</kbd> select · <kbd class="kbd">←</kbd> <kbd class="kbd">→</kbd> navigate · <kbd class="kbd">F</kbd> flag</span>
+        <div class="quiz-footer">
+          <div class="quiz-footer-secondary">
+            <button id="flagQuestion" class="ghost-button" type="button">${currentFlagged ? "⚑ Unflag" : "⚐ Flag"}</button>
+            <button id="saveQuestion" class="ghost-button" type="button">♥ Save</button>
+            <button id="weakQuestion" class="ghost-button" type="button">⚠ Weak</button>
+            <label class="field compact confidence-field"><span>Confidence</span><select id="confidence"><option value="1">1 — low</option><option value="2">2</option><option value="3" selected>3 — mid</option><option value="4">4</option><option value="5">5 — high</option></select></label>
+          </div>
+          <div class="quiz-nav">
+            <button id="prevQuestion" class="ghost-button" type="button" ${activeSession.index === 0 ? "disabled" : ""}>← Prev</button>
+            <button id="submitSession" class="ghost-button" type="button">Submit</button>
+            <button id="nextQuestion" class="quiz-next-btn" type="button">${isLast ? "Finish ✓" : "Next →"}</button>
+          </div>
+        </div>
+        <div class="quiz-key-hints">
+          <kbd class="kbd">A–D</kbd> select &nbsp;·&nbsp; <kbd class="kbd">←</kbd><kbd class="kbd">→</kbd> navigate &nbsp;·&nbsp; <kbd class="kbd">F</kbd> flag &nbsp;·&nbsp; <kbd class="kbd">Enter</kbd> advance
         </div>
       </article>
       <aside class="card exam-sidebar">
@@ -508,14 +534,12 @@ function renderQuiz(showReview = false) {
         <div class="exam-stats">
           <span><strong>${score.unanswered}</strong> unanswered</span>
           <span><strong>${activeSession.flagged.length}</strong> flagged</span>
-          <span><strong>${formatNumber(activeSession.questions.length)}</strong> total</span>
+          <span><strong>${formatNumber(total)}</strong> total</span>
         </div>
         <div class="question-palette" aria-label="Question navigation">
           ${activeSession.questions.map((item, index) => {
             const isCurrent = index === activeSession.index;
-            const answeredClass = activeSession.answers[item.id] ? " answered" : "";
-            const flaggedClass = activeSession.flagged.includes(item.id) ? " flagged" : "";
-            return `<button class="palette-item${isCurrent ? " current" : ""}${answeredClass}${flaggedClass}" data-index="${index}" type="button" aria-label="Go to question ${index + 1}">${index + 1}</button>`;
+            return `<button class="palette-item${isCurrent ? " current" : ""}${activeSession.answers[item.id] ? " answered" : ""}${activeSession.flagged.includes(item.id) ? " flagged" : ""}" data-index="${index}" type="button" aria-label="Question ${index + 1}">${index + 1}</button>`;
           }).join("")}
         </div>
         <div class="palette-legend">
@@ -564,7 +588,6 @@ function renderQuiz(showReview = false) {
     save();
     toast("Topic added to weak topics.");
   });
-  document.querySelector("#flashcardQuestion").addEventListener("click", () => toast("Flashcard noted in spaced repetition schedule."));
   document.querySelectorAll(".palette-item").forEach((button) => {
     button.addEventListener("click", () => {
       activeSession.index = Number(button.dataset.index);
@@ -629,18 +652,26 @@ function renderTables(tables = []) {
 }
 
 function renderExplanation(question) {
-  const wrong = Object.entries(question.explanation.wrong_answer_explanations || {}).map(([id, text]) => `<li><strong>${id}:</strong> ${esc(text)}</li>`).join("");
+  const exp = question.explanation;
+  const wrong = Object.entries(exp.wrong_answer_explanations || {})
+    .filter(([id]) => id !== question.correct_answer)
+    .map(([id, text]) => `<div class="wrong-item"><span class="choice-id wrong-badge">${esc(id)}</span><p>${esc(text)}</p></div>`)
+    .join("");
   return `
     <section class="explanation">
-      <h2>Explanation</h2>
-      <p><strong>Correct answer:</strong> ${esc(question.correct_answer)}</p>
-      <p>${esc(question.explanation.short)}</p>
-      <details open><summary>Detailed explanation</summary><p>${esc(question.explanation.detailed)}</p></details>
-      <details><summary>Why correct</summary><p>${esc(question.explanation.why_correct)}</p></details>
-      <details><summary>Wrong answers</summary><ul>${wrong}</ul></details>
-      <details><summary>High-yield takeaway</summary><p>${esc(question.explanation.high_yield_takeaway)}</p></details>
-      <details><summary>Common trap</summary><p>${esc(question.explanation.common_trap)}</p></details>
-      <details><summary>Related concepts</summary><p>${esc((question.explanation.related_concepts || []).join(", "))}</p></details>
+      <div class="explanation-header">
+        <span class="explanation-label">Explanation</span>
+        <span class="correct-badge">Correct: ${esc(question.correct_answer)}</span>
+      </div>
+      <p class="explanation-short">${esc(exp.short)}</p>
+      <div class="explanation-sections">
+        <details open><summary>Why this answer is correct</summary><p>${esc(exp.why_correct)}</p></details>
+        ${wrong ? `<details><summary>Why the other choices are wrong</summary><div class="wrong-list">${wrong}</div></details>` : ""}
+        <details><summary>High-yield takeaway</summary><p>${esc(exp.high_yield_takeaway)}</p></details>
+        <details><summary>Common trap</summary><p>${esc(exp.common_trap)}</p></details>
+        ${exp.related_concepts?.length ? `<details><summary>Related concepts</summary><p>${esc(exp.related_concepts.join(" · "))}</p></details>` : ""}
+        ${exp.formulas?.length ? `<details><summary>Formulas</summary><p class="formula-list">${esc(exp.formulas.join(" · "))}</p></details>` : ""}
+      </div>
     </section>
   `;
 }
