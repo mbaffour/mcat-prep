@@ -7,6 +7,7 @@ import { summarizeAttempts, recentActivity } from "./analytics.js";
 import { allQuestions, filterQuestions, loadInitialQuestions, parseQuestionsFromText, publishDraft, questionBankMeta, questionsToCsv, upsertQuestion } from "./questionBank.js";
 import { createSession, recordAnswer, scoreSession } from "./quizEngine.js";
 import { dueQuestions } from "./spacedRepetition.js";
+import { mountFocusTimer } from "./focusTimer.js";
 import { canPublish, validateQuestion } from "./schemaValidator.js";
 import { extractFormulas, extractKeyTerms, extractLearningObjectives, generateDraftQuestions, suggestSectionAndTopic } from "./contentIngestion.js";
 
@@ -114,8 +115,26 @@ backupButton.addEventListener("click", () => {
     </div>
     <label class="field">Import backup JSON<textarea id="backupText" class="json-box" placeholder="Paste backup JSON"></textarea></label>
     <button id="importBackup" type="button">Import backup</button>
+    <h2>Portable progress</h2>
+    <p class="lede">Move only your study stats and spaced-repetition schedule between devices, without custom questions, drafts, or settings.</p>
+    <div class="toolbar">
+      <button id="exportProgress" type="button">Export progress</button>
+    </div>
+    <label class="field">Import progress JSON<textarea id="progressText" class="json-box" placeholder="Paste progress JSON"></textarea></label>
+    <button id="importProgress" type="button">Import progress</button>
   `);
   document.querySelector("#exportBackup").addEventListener("click", () => download("project-528-backup.json", store.exportBackup()));
+  document.querySelector("#exportProgress").addEventListener("click", () => download("project-528-progress.json", store.exportProgress()));
+  document.querySelector("#importProgress").addEventListener("click", () => {
+    try {
+      state = store.importProgress(document.querySelector("#progressText").value);
+      toast("Progress imported.");
+      modal.close();
+      location.reload();
+    } catch (error) {
+      toast(error.message);
+    }
+  });
   document.querySelector("#importBackup").addEventListener("click", () => {
     try {
       state = store.importBackup(document.querySelector("#backupText").value);
@@ -509,10 +528,12 @@ function renderQuiz(showReview = false) {
           <span><i class="legend-box flagged"></i>Flagged</span>
           <span><i class="legend-box current"></i>Current</span>
         </div>
+        <div id="focusTimerMount"></div>
       </aside>
     </section>
   `);
   if (activeSession.timed) startLiveTimer();
+  mountFocusTimer(document.querySelector("#focusTimerMount"));
 
   document.querySelectorAll(".choice").forEach((button) => {
     button.addEventListener("click", () => {
