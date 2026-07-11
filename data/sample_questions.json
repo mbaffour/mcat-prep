@@ -1,6 +1,6 @@
 {
-  "note": "The deployable question bank is sharded in data/questions/. This placeholder keeps each repository file below GitHub's normal file-size limit.",
+  "note": "Question bank sharded in data/questions/. This file is a pointer.",
   "manifest": "data/questions/manifest.json",
-  "total_questions": 100000,
-  "generated_at": "2026-05-12T02:11:42.839Z"
+  "total_questions": 60000,
+  "generated_at": "2026-05-17T19:30:40.115Z"
 }

@@ -1,247 +1,151 @@
 {
-  "generated_at": "2026-05-12T02:11:42.839Z",
-  "total_questions": 100000,
+  "generated_at": "2026-05-17T19:30:40.115Z",
+  "total_questions": 60000,
   "shard_size": 2500,
   "shards": [
     {
       "file": "questions-001.json",
       "count": 2500,
       "first_id": "demo-001",
-      "last_id": "bulk-01952"
+      "last_id": "cq-001555"
     },
     {
       "file": "questions-002.json",
       "count": 2500,
-      "first_id": "calc-00489",
-      "last_id": "bulk-03952"
+      "first_id": "exp-000325",
+      "last_id": "cq-003151"
     },
     {
       "file": "questions-003.json",
       "count": 2500,
-      "first_id": "calc-00989",
-      "last_id": "bulk-05952"
+      "first_id": "vig-00658",
+      "last_id": "cq-004746"
     },
     {
       "file": "questions-004.json",
       "count": 2500,
-      "first_id": "calc-01489",
-      "last_id": "bulk-07952"
+      "first_id": "calc-000992",
+      "last_id": "cq-006341"
     },
     {
       "file": "questions-005.json",
       "count": 2500,
-      "first_id": "calc-01989",
-      "last_id": "bulk-09952"
+      "first_id": "exp-001325",
+      "last_id": "cq-007937"
     },
     {
       "file": "questions-006.json",
       "count": 2500,
-      "first_id": "calc-02489",
-      "last_id": "bulk-11952"
+      "first_id": "vig-01658",
+      "last_id": "cq-009531"
     },
     {
       "file": "questions-007.json",
       "count": 2500,
-      "first_id": "calc-02989",
-      "last_id": "bulk-13952"
+      "first_id": "cq-009532",
+      "last_id": "cars-001652"
     },
     {
       "file": "questions-008.json",
       "count": 2500,
-      "first_id": "calc-03489",
-      "last_id": "bulk-15952"
+      "first_id": "cars-001653",
+      "last_id": "cars-003652"
     },
     {
       "file": "questions-009.json",
       "count": 2500,
-      "first_id": "calc-03989",
-      "last_id": "bulk-17952"
+      "first_id": "cars-003653",
+      "last_id": "cars-005652"
     },
     {
       "file": "questions-010.json",
       "count": 2500,
-      "first_id": "calc-04489",
-      "last_id": "bulk-19952"
+      "first_id": "cars-005653",
+      "last_id": "cars-007652"
     },
     {
       "file": "questions-011.json",
       "count": 2500,
-      "first_id": "calc-04989",
-      "last_id": "cars-01805"
+      "first_id": "cars-007653",
+      "last_id": "cars-009652"
     },
     {
       "file": "questions-012.json",
       "count": 2500,
-      "first_id": "cars-01806",
-      "last_id": "cars-04305"
+      "first_id": "cars-009653",
+      "last_id": "vig-02149"
     },
     {
       "file": "questions-013.json",
       "count": 2500,
-      "first_id": "cars-04306",
-      "last_id": "cars-06805"
+      "first_id": "cq-010328",
+      "last_id": "cq-012066"
     },
     {
       "file": "questions-014.json",
       "count": 2500,
-      "first_id": "cars-06806",
-      "last_id": "cars-09305"
+      "first_id": "cq-012067",
+      "last_id": "cq-013805"
     },
     {
       "file": "questions-015.json",
       "count": 2500,
-      "first_id": "cars-09306",
-      "last_id": "cars-11805"
+      "first_id": "exp-005579",
+      "last_id": "vig-03149"
     },
     {
       "file": "questions-016.json",
       "count": 2500,
-      "first_id": "cars-11806",
-      "last_id": "cars-14305"
+      "first_id": "cq-015542",
+      "last_id": "calc-003483"
     },
     {
       "file": "questions-017.json",
       "count": 2500,
-      "first_id": "cars-14306",
-      "last_id": "cars-16805"
+      "first_id": "cq-017281",
+      "last_id": "cq-019019"
     },
     {
       "file": "questions-018.json",
       "count": 2500,
-      "first_id": "cars-16806",
-      "last_id": "cars-19305"
+      "first_id": "exp-006579",
+      "last_id": "cq-020770"
     },
     {
       "file": "questions-019.json",
       "count": 2500,
-      "first_id": "cars-19306",
-      "last_id": "cars-21805"
+      "first_id": "cq-020771",
+      "last_id": "cq-022604"
     },
     {
       "file": "questions-020.json",
       "count": 2500,
-      "first_id": "cars-21806",
-      "last_id": "bulk-21524"
+      "first_id": "exp-007246",
+      "last_id": "cq-024437"
     },
     {
       "file": "questions-021.json",
       "count": 2500,
-      "first_id": "calc-05382",
-      "last_id": "bulk-23524"
+      "first_id": "vig-04816",
+      "last_id": "cq-026270"
     },
     {
       "file": "questions-022.json",
       "count": 2500,
-      "first_id": "calc-05882",
-      "last_id": "bulk-25524"
+      "first_id": "cq-026271",
+      "last_id": "cq-028104"
     },
     {
       "file": "questions-023.json",
       "count": 2500,
-      "first_id": "calc-06382",
-      "last_id": "bulk-27524"
+      "first_id": "exp-008246",
+      "last_id": "cq-029937"
     },
     {
       "file": "questions-024.json",
       "count": 2500,
-      "first_id": "calc-06882",
-      "last_id": "bulk-29524"
-    },
-    {
-      "file": "questions-025.json",
-      "count": 2500,
-      "first_id": "calc-07382",
-      "last_id": "bulk-31524"
-    },
-    {
-      "file": "questions-026.json",
-      "count": 2500,
-      "first_id": "calc-07882",
-      "last_id": "bulk-33524"
-    },
-    {
-      "file": "questions-027.json",
-      "count": 2500,
-      "first_id": "calc-08382",
-      "last_id": "bulk-35524"
-    },
-    {
-      "file": "questions-028.json",
-      "count": 2500,
-      "first_id": "calc-08882",
-      "last_id": "bulk-37524"
-    },
-    {
-      "file": "questions-029.json",
-      "count": 2500,
-      "first_id": "calc-09382",
-      "last_id": "bulk-39524"
-    },
-    {
-      "file": "questions-030.json",
-      "count": 2500,
-      "first_id": "calc-09882",
-      "last_id": "bulk-41651"
-    },
-    {
-      "file": "questions-031.json",
-      "count": 2500,
-      "first_id": "bulk-41652",
-      "last_id": "bulk-44151"
-    },
-    {
-      "file": "questions-032.json",
-      "count": 2500,
-      "first_id": "bulk-44152",
-      "last_id": "bulk-46651"
-    },
-    {
-      "file": "questions-033.json",
-      "count": 2500,
-      "first_id": "bulk-46652",
-      "last_id": "bulk-49151"
-    },
-    {
-      "file": "questions-034.json",
-      "count": 2500,
-      "first_id": "bulk-49152",
-      "last_id": "bulk-51651"
-    },
-    {
-      "file": "questions-035.json",
-      "count": 2500,
-      "first_id": "bulk-51652",
-      "last_id": "bulk-54151"
-    },
-    {
-      "file": "questions-036.json",
-      "count": 2500,
-      "first_id": "bulk-54152",
-      "last_id": "bulk-56651"
-    },
-    {
-      "file": "questions-037.json",
-      "count": 2500,
-      "first_id": "bulk-56652",
-      "last_id": "bulk-59151"
-    },
-    {
-      "file": "questions-038.json",
-      "count": 2500,
-      "first_id": "bulk-59152",
-      "last_id": "bulk-61651"
-    },
-    {
-      "file": "questions-039.json",
-      "count": 2500,
-      "first_id": "bulk-61652",
-      "last_id": "bulk-64151"
-    },
-    {
-      "file": "questions-040.json",
-      "count": 2500,
-      "first_id": "bulk-64152",
-      "last_id": "bulk-66651"
+      "first_id": "vig-05816",
+      "last_id": "cq-031770"
     }
   ]
 }
